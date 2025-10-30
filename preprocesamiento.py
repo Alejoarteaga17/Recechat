@@ -1,8 +1,3 @@
-# =========================
-# Preprocesamiento de Recetas
-# Persona A - Proyecto Chatbot de Recetas
-# =========================
-
 import pandas as pd
 import re
 import nltk

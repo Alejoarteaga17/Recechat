@@ -1,0 +1,37 @@
+{
+  "If I had digital ingredients I'd make a bytes-salad!": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-10-29T22:46:04.306404"
+  },
+  "Hmm... that doesn't sound like a recipe, but I can help with meal ideas!": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 1,
+    "more": 0,
+    "last_shown": "2025-10-29T22:46:46.395440"
+  },
+  "That doesn't seem like food, but interesting question.": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-10-29T22:47:02.757911"
+  },
+  "No exact match, but how about something with Frozen Coconut Yogurt with Cinnamon (0.30); Coconut Doughnuts (0.30); Mini Raspberry and Coconut Cream Tarts (0.28)?": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-10-29T22:47:17.508677"
+  },
+  "No exact match, but how about something with ?": {
+    "shown": 0,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-10-29T22:47:27.010360"
+  }
+}
