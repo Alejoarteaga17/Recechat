@@ -1,4 +1,3 @@
-# recommender.py (modificado)
 import os
 import ast
 import joblib
@@ -11,8 +10,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 import memory_manager as mm   
-
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # Suprimir logs de TensorFlow
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'  # Desactivar optimizaciones OneDNN
 
 
 # ---------- Config ----------
@@ -25,7 +24,7 @@ VECTORIZER_PATH = 'tfidf_vectorizer.joblib'
 EMBED_PATH = 'embeddings.npy'
 COMMON_ING_PATH = 'common_ingredients.txt'
 
-# ---------- Utilidades ----------
+# Utilidades para evitar recálculos innecesarios de embeddings y TF-IDF
 def is_dataset_updated(csv_path, cache_info_path):
     if not os.path.exists(cache_info_path):
         return True
@@ -59,7 +58,7 @@ else:
 corpus = df['Cleaned_Ingredients'].tolist()
 titles = df['Title'].fillna('No title').tolist()
 
-# ---------- Cache de modelos ----------
+# ---------- Cache de modelos ya calculados ----------
 need_recompute = is_dataset_updated(CLEANED_CSV, CACHE_INFO)
 if not need_recompute and os.path.exists(EMBED_PATH) and os.path.exists(VECTORIZER_PATH):
     print("Cargando modelos y embeddings desde cache...")
@@ -88,6 +87,8 @@ interaction_count = 0
 common_ingredients = load_common_ingredients()
 
 # ---------- Funciones principales ----------
+
+
 def es_consulta_comida(text):
     palabras_clave = ['recipe', 'cook', 'food', 'ingredient', 'bake', 'meal', 'dish', 'soup', 'salad']
     return any(word in text.lower() for word in palabras_clave)
@@ -124,7 +125,7 @@ def mostrar_respuesta_amigable(resultados, query_text, offset=0):
     # If low similarity, suggest common ingredients
     if not resultados or resultados[0][2] < 0.1:
         sugeridas = ", ".join(random.sample(common_ingredients, min(5, len(common_ingredients))))
-        base = f"No encontré recetas similares, prueba con: {sugeridas}"
+        base = f"No similar recipes found, maybe try these: {sugeridas}"
         mm.register_interaction(query_text, base, "shown")
         tpl = mm.get_best_template_for_query(query_text)
         final = mm.render_template(tpl, list_text=sugeridas)
@@ -132,7 +133,7 @@ def mostrar_respuesta_amigable(resultados, query_text, offset=0):
 
     # normal case: create base listing
     list_text = build_list_text(resultados[offset:offset+3], n=3)
-    base = "Here are some recipes you might like: {list}"
+    base = "Here are some recipes you might like: {list_text}"
     # ask memory manager to pick/modify a template
     tpl = mm.get_best_template_for_query(query_text)
     final = mm.render_template(tpl, list_text=list_text)
@@ -146,7 +147,7 @@ def mostrar_mas_recetas(resultados, start_idx=3):
         mm.register_interaction("", base, "shown")
         return base
     list_text = build_list_text(extra, n=3)
-    base = "Here are some other options: {list}"
+    base = "Here are some other options: {list_text}"
     tpl = mm.get_best_template_for_query(list_text)
     final = mm.render_template(tpl, list_text=list_text)
     mm.register_interaction(list_text, final, "shown")
@@ -159,6 +160,16 @@ def actualizar_ingredientes_comunes(query_text):
     common_ingredients = list(set(common_ingredients))
     save_common_ingredients(common_ingredients)
 
+def update_common_ingredients(user_input, accepted, path=COMMON_ING_PATH):
+    """Actualiza los ingredientes comunes basados en consultas aceptadas."""
+    if not accepted:
+        return
+    common = set(load_common_ingredients())
+    for ing in re.findall(r'\b[a-zA-Z]+\b', user_input.lower()):
+        if ing:
+            common.add(ing)
+    save_common_ingredients(common)
+
 # ---------- Ciclo de evaluación (cada 30 interacciones) ----------
 def evaluar_modelo_periodico():
     """
@@ -166,7 +177,7 @@ def evaluar_modelo_periodico():
     - la evaluación ligera que ya tenías
     - y lanza memory_manager.evaluate_and_improve() para producir nuevas respuestas
     """
-    print("\nEvaluación periódica: analizando salud del recomendador y la memoria de respuestas...")
+    print("\nPeriodic Evaluation: checking health of recommender and response memory...")
     # quick recommender check (same as earlier)
     muestras = random.sample(corpus, min(10, len(corpus)))
     scores = []
@@ -176,9 +187,9 @@ def evaluar_modelo_periodico():
             scores.append(res[0][2])
     if scores:
         avg_score = np.mean(scores)
-        print(f"Promedio similitud top-1: {avg_score:.3f}")
+        print(f"Average similarity top-1: {avg_score:.3f}")
     else:
-        print("No hay muestras válidas.")
+        print("No valid samples.")
 
     # now: automatic improvement of responses
     res = mm.evaluate_and_improve()
@@ -189,7 +200,7 @@ def interactuar_con_usuario(query_text):
     global interaction_count
     interaction_count += 1
 
-    actualizar_ingredientes_comunes(query_text)
+    
     resultados = recomendar_recetas_tfidf(query_text)
     offset = 0
     respuesta = mostrar_respuesta_amigable(resultados, query_text, offset=offset)
@@ -197,32 +208,33 @@ def interactuar_con_usuario(query_text):
 
     # user loop
     while True:
-        opcion = input("\n¿Te gustó alguna receta? (sí/no/más/salir): ").strip().lower()
-        if opcion in ("sí", "si", "s"):
-            idx = input("¿Cuál número te gustó?: ").strip()
+        opcion = input("\n¿Did you like any recipe? (yes/no/more/exit): ").strip().lower()
+        if opcion in ("yes", "y"):
+            idx = input("Which number did you like?: ").strip()
             try:
                 chosen = int(idx) - 1
                 chosen_title = resultados[offset + chosen][1]
-                print(f"¡Buena elección! '{chosen_title}' 😋")
+                print(f"Great choice! '{chosen_title}' 😋")
                 mm.register_interaction(query_text, respuesta, "accepted")
+                update_common_ingredients(query_text, accepted=True)
             except Exception:
-                print("Número inválido.")
+                print("Invalid number.")
             break
         elif opcion in ("no", "n"):
-            print("Ok, intentaré con otras opciones.")
+            print("Ok, I'll try with other options.")
             mm.register_interaction(query_text, respuesta, "rejected")
             break
-        elif opcion == "más":
+        elif opcion == "more":
             offset += 3
             more_text = mostrar_mas_recetas(resultados, start_idx=offset)
             print("\n" + more_text)
             mm.register_interaction(query_text, more_text, "more")
-        elif opcion == "salir":
+        elif opcion == "exit":
             mm.register_interaction(query_text, respuesta, "rejected")
-            print("Adiós 👋")
+            print("Goodbye 👋")
             return
         else:
-            print("Responde: sí / no / más / salir")
+            print("Please respond with: yes / no / more / exit")
 
     # every 30 interactions run periodic evaluation + memory improvement
     if interaction_count % 30 == 0:
@@ -230,10 +242,10 @@ def interactuar_con_usuario(query_text):
 
 # ---------- Main ----------
 if __name__ == "__main__":
-    print("Iniciando recommender + memory manager. Escribe 'salir' para terminar.")
+    print("Starting recommender + memory manager. Type 'exit' to quit.")
     while True:
-        user_input = input("\n¿Qué ingredientes tienes hoy? (o 'salir'): ").strip()
-        if user_input.lower() == "salir":
-            print("Hasta luego!")
+        user_input = input("\n¿ What ingredients do you have today? (o 'exit'): ").strip()
+        if user_input.lower() == "exit":
+            print("Goodbye!")
             break
         interactuar_con_usuario(user_input)

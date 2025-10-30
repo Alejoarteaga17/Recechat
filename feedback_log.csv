@@ -4,3 +4,17 @@
 2025-10-29T22:47:17.438704	shown	Frozen Coconut Yogurt with Cinnamon (0.30); Coconut Doughnuts (0.30); Mini Raspberry and Coconut Cream Tarts (0.28)	No exact match, but how about something with Frozen Coconut Yogurt with Cinnamon (0.30); Coconut Doughnuts (0.30); Mini Raspberry and Coconut Cream Tarts (0.28)?
 2025-10-29T22:47:17.461353	more	rice, coconut and cinamon	No exact match, but how about something with Frozen Coconut Yogurt with Cinnamon (0.30); Coconut Doughnuts (0.30); Mini Raspberry and Coconut Cream Tarts (0.28)?
 2025-10-29T22:47:26.986382	accepted	rice, coconut and cinamon	No exact match, but how about something with ?
+2025-10-29T23:32:43.489236	shown	cinamon, flour, sugar	Hmm... that doesn't sound like a recipe, but I can cook up an idea!
+2025-10-29T23:32:50.473541	shown	Gluten-Free Sesame Sandwich Bread (0.23); Cherry Buttermilk Clafoutis (0.22); Peach Galette (0.22)	No exact match, but how about something with Gluten-Free Sesame Sandwich Bread (0.23); Cherry Buttermilk Clafoutis (0.22); Peach Galette (0.22)?
+2025-10-29T23:32:50.482630	more	cinamon, flour, sugar	No exact match, but how about something with Gluten-Free Sesame Sandwich Bread (0.23); Cherry Buttermilk Clafoutis (0.22); Peach Galette (0.22)?
+2025-10-29T23:33:10.333792	accepted	cinamon, flour, sugar	Hmm... that doesn't sound like a recipe, but I can help with meal ideas!
+2025-10-29T23:33:26.665104	shown	show the most common	Hmm... that doesn't sound like a recipe, but I can cook up an idea!
+2025-10-29T23:33:34.190864	rejected	show the most common	I couldn't find an exact match 😅. Try these common ingredients: .
+2025-10-29T23:36:53.845588	shown	garlic, sauce, salt	If I had digital ingredients I'd make a bytes-salad!
+2025-10-29T23:37:14.874323	shown	Eggy Grits Soufflé (0.19); Chipotle Aïoli (0.19); Stuffed Meatloaf (0.19)	These recipes seem close to what you described: Eggy Grits Soufflé (0.19); Chipotle Aïoli (0.19); Stuffed Meatloaf (0.19). Would you like more options?
+2025-10-29T23:37:14.878033	more	garlic, sauce, salt	These recipes seem close to what you described: Eggy Grits Soufflé (0.19); Chipotle Aïoli (0.19); Stuffed Meatloaf (0.19). Would you like more options?
+2025-10-29T23:38:16.022717	accepted	garlic, sauce, salt	Here are some recipes you might like:
+
+Do you want more?
+2025-10-29T23:38:23.459944	shown	none	If I had digital ingredients I'd make a bytes-salad!
+2025-10-29T23:38:26.868448	rejected	none	I couldn't find an exact match 😅. Try these common ingredients: .

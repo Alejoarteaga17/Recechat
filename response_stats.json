@@ -1,17 +1,17 @@
 {
   "If I had digital ingredients I'd make a bytes-salad!": {
-    "shown": 1,
+    "shown": 3,
     "accepted": 0,
     "rejected": 0,
     "more": 0,
-    "last_shown": "2025-10-29T22:46:04.306404"
+    "last_shown": "2025-10-29T23:38:23.501586"
   },
   "Hmm... that doesn't sound like a recipe, but I can help with meal ideas!": {
     "shown": 0,
-    "accepted": 0,
+    "accepted": 1,
     "rejected": 1,
     "more": 0,
-    "last_shown": "2025-10-29T22:46:46.395440"
+    "last_shown": "2025-10-29T23:33:10.335424"
   },
   "That doesn't seem like food, but interesting question.": {
     "shown": 1,
@@ -33,5 +33,40 @@
     "rejected": 0,
     "more": 0,
     "last_shown": "2025-10-29T22:47:27.010360"
+  },
+  "Hmm... that doesn't sound like a recipe, but I can cook up an idea!": {
+    "shown": 2,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-10-29T23:33:26.668462"
+  },
+  "No exact match, but how about something with Gluten-Free Sesame Sandwich Bread (0.23); Cherry Buttermilk Clafoutis (0.22); Peach Galette (0.22)?": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-10-29T23:32:50.519777"
+  },
+  "I couldn't find an exact match 😅. Try these common ingredients: .": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 2,
+    "more": 0,
+    "last_shown": "2025-10-29T23:38:26.870348"
+  },
+  "These recipes seem close to what you described: Eggy Grits Soufflé (0.19); Chipotle Aïoli (0.19); Stuffed Meatloaf (0.19). Would you like more options?": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-10-29T23:37:14.923475"
+  },
+  "Here are some recipes you might like:\n\nDo you want more?": {
+    "shown": 0,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-10-29T23:38:16.096074"
   }
 }
