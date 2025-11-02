@@ -140,12 +140,52 @@ def evaluar_modelo_periodico():
         else:
             print("⚠️ Not enough samples for evaluation.")
 
-        # ✅ Esto hace que el modelo aprenda nuevas respuestas automáticamente
+        #  Esto hace que el modelo aprenda nuevas respuestas automáticamente
         result = mm.evaluate_and_improve()
         print("🧠 Memory Manager:", result)
 
     except Exception as e:
         print("⚠️ Evaluation error:", e)
+
+def mostrar_detalles_receta(idx, resultados):
+    recipe_index = resultados[idx][0]
+    
+    title = df.loc[recipe_index, "Title"]
+    ingredients = df.loc[recipe_index, "Cleaned_Ingredients"]
+    instructions = df.loc[recipe_index, "Instructions"]
+
+    import re
+
+    # ✅ Convertir ingredientes en lista robusta
+    ingredientes_list = re.split(r',|;|\n| - ', ingredients)
+    ingredientes_list = [f"- {ing.strip()}" for ing in ingredientes_list if ing.strip()]
+    formatted_ingredients = "\n".join(ingredientes_list)
+
+    while True:
+        print(f"\n📌 Recipe: {title}")
+        print("\n🥕 Ingredients needed:\n")
+        print(formatted_ingredients)
+
+        opcion = input("\nWhat would you like to do?\n"
+                       "1 = Show instructions\n"
+                       "2 = Back to recipes\n"
+                       "Choice: ").strip()
+
+        if opcion == "1":
+            # ✅ Dividir instrucciones por puntos, saltos de línea o numeración
+            steps = re.split(r'\.|\n|\r|\d+\)|\d+\.', instructions)
+            steps = [step.strip() for step in steps if step.strip()]
+            formatted_steps = "\n".join([f"{i+1}. {step}" for i, step in enumerate(steps)])
+
+            print("\n👨‍🍳 Instructions:\n")
+            print(formatted_steps)
+            input("\nPress ENTER to go back...")
+        
+        elif opcion == "2":
+            return  #  Regresa a la lista sin romper nada
+
+        else:
+            print("Invalid option. Try again.")
 
 
 # ✅ MAIN INTERACTION LOOP ✅
@@ -172,8 +212,8 @@ def interactuar_con_usuario(query_text):
             if idx < 0 or idx >= len(resultados):
                 print("That number is not in the list.")
                 continue
-            chosen_title = resultados[idx][1]
-            print(f"Great choice! '{chosen_title}' 😋")
+            #  Mostrar ingredientes e instrucciones interactivo
+            mostrar_detalles_receta(idx, resultados)
             mm.register_interaction(query_text, respuesta, "accepted")
             break
 
