@@ -9,7 +9,7 @@ from datetime import datetime
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
-import memory_manager as mm
+from src import memory_manager as mm
 import json
 import nltk
 from nltk.corpus import stopwords
@@ -213,7 +213,8 @@ def recomendar_recetas(query_text, top_k=TOP_K, w_tfidf=None):
     sims = w_tfidf * sims_tfidf + (1 - w_tfidf) * sims_emb
 
     idx_top = np.argsort(-sims)[:top_k]
-    return [(i, titles[i], float(sims[i]), w_tfidf) for i in idx_top]
+    # Return classic 3-tuple (idx, title, score) to preserve server contract.
+    return [(i, titles[i], float(sims[i])) for i in idx_top]
 
 def format_recipes_for_display(resultados, offset=0, limit=3):
     formatted = []

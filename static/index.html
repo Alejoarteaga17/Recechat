@@ -280,9 +280,9 @@
                                         let txt = `\n══════════════════════════════\n`;
                                         txt += `🍽️ Recipe: ${data.title}\n`;
                                         txt += `══════════════════════════════\n\n`;
-                                        txt += `🥕 Ingredients:\n\n`;
+                                        txt += `Ingredients:\n\n`;
                                         for(const ing of data.ingredients){
-                                            txt += `• ${ing.text} ${ing.missing ? '❌' : '✅'}\n`;
+                                            txt += `• ${ing.text}\n`;
                                         }
                                         appendAssistantMessage(txt);
 
@@ -294,8 +294,8 @@
                                         b2.innerHTML = `
                                             <div>What would you like to do?</div>
                                             <div style="margin-top:8px; display:flex; gap:8px;">
-                                                <button class="btn-see-inst">1️⃣ See instructions</button>
-                                                <button class="btn-back-list">2️⃣ Back to recipe list</button>
+                                                <button class="btn-see-inst">1️ See instructions</button>
+                                                <button class="btn-back-list">2️ Back to recipe list</button>
                                             </div>
                                         `;
                                         w2.appendChild(b2);

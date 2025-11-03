@@ -439,5 +439,26 @@
     "rejected": 0,
     "more": 1,
     "last_shown": "2025-11-03T17:23:44.371348"
+  },
+  "Here are some recipes you might like:\n1. Grill-Roasted Pineapple (0.12)\n2. Jammy Soft-Boiled Eggs (0.12)\n3. Hard-Boiled Eggs (0.12)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T17:30:05.098647"
+  },
+  "Here are some recipes you might like:\n1. Fully Salted Roast Chicken (0.57)\n2. Pan-Roasted Chicken with Carrots and Almonds (0.34)\n3. Paella Valenciana (0.33)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T17:30:30.887198"
+  },
+  "Here are some recipes you might like:\n4. Spiced Fava Bean Soup with Rice and Tomato (0.32)\n5. Grilled Tandoori-Style Chicken and Mangoes with Mango Jasmine Rice (0.32)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-11-03T17:30:50.249998"
   }
 }
