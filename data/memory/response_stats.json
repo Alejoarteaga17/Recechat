@@ -383,5 +383,33 @@
     "rejected": 0,
     "more": 0,
     "last_shown": "2025-11-03T11:00:59.312802"
+  },
+  "Here are some recipes you might like:\n1. Pasta with 15-Minute Burst Cherry Tomato Sauce (0.43)\n2. Farfalle with Tomatoes and Feta Cheese (0.43)\n3. Angel-Hair Pasta with Fresh Tomato Sauce (0.41)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T13:38:37.848499"
+  },
+  "Here are some recipes you might like:\n1. How To Temper Chocolate (0.10)\n2. The Retro Highball (0.09)\n3. Cold \"Hot Chocolate\" Trifle (0.09)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T15:15:06.080004"
+  },
+  "Here are some recipes you might like:\n1. Roast Chicken with Rosemary, Lemon, and Honey (0.44)\n2. Pan-Seared Strip Steak with Red-Wine Pan Sauce and Pink-Peppercorn Butter (0.35)\n3. Fully Salted Roast Chicken (0.31)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T15:18:46.545757"
+  },
+  "Here are some recipes you might like:\n4. Chewy Nut and Cereal Bars (0.30)\n5. Asian-Glazed Chicken Thighs (0.29)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-11-03T15:18:53.201938"
   }
 }

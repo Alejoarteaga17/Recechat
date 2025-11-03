@@ -26,11 +26,11 @@
 
             /* Chat bubbles */
         .message { margin:8px 0; display:flex; align-items:flex-end; gap:8px; }
-        .message.user { justify-content:flex-start; }
-        .message.assistant { justify-content:flex-end; }
+        .message.assistant { justify-content:flex-start; }
+        .message.user { justify-content:flex-end; }
         .bubble { max-width:82%; padding:10px 14px; border-radius:12px; }
         .user-bubble { background:#f1f5f9; color:#0f1724; border-radius:12px; }
-        .assistant-bubble { background:#86efac; color:#072; border-radius:12px; }
+        .assistant-bubble { background:#86a7ef; color:#072; border-radius:12px; }
         .avatar { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:14px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
         .user .avatar { background:#94a3b8; }
         .assistant .avatar { background:#22c55e; }
@@ -48,7 +48,6 @@
             <h1>Recechat - Recipes Recommender</h1>
             <div class="small">API: <code>/api/chat/start</code></div>
             </header>
-
                         <div id="status" class="small">Write a message below and hit send.</div>
 
                         <div id="chat" style="margin-top:12px; border-radius:8px; background:#fff; padding:12px; min-height:420px; max-height:64vh; overflow:auto; box-shadow:0 6px 18px rgba(16,24,40,0.04);">
@@ -97,8 +96,11 @@
                     if(data.error){ appendAssistantMessage('Error: '+data.error); return; }
                     currentSessionId = data.session_id;
                     if(data.friendly) appendAssistantMessage(data.friendly);
-                    // show action prompt with buttons yes/no/more/exit
-                    showActionPrompt(data.offset || 0, data.results ? data.results.length : 0);
+                    // show action prompt only if there are recipe results (avoid on pure greetings)
+                    const total = (data.results && Array.isArray(data.results)) ? data.results.length : 0;
+                    if(total > 0){
+                        showActionPrompt(data.offset || 0, total);
+                    }
                     scrollChatToBottom();
                 }catch(err){ appendAssistantMessage('Error connecting to API: '+err); }
             }
@@ -121,8 +123,8 @@
                             ts.textContent = nowHM();
                             content.appendChild(bubble);
                             content.appendChild(ts);
-                            el.appendChild(avatar);
                             el.appendChild(content);
+                            el.appendChild(avatar);
                             chat.appendChild(el);
                         }
 
@@ -149,8 +151,8 @@
                             content.appendChild(node);
                             content.appendChild(ts);
                             // order: content then avatar to keep avatar at far right
-                            el.appendChild(content);
                             el.appendChild(avatar);
+                            el.appendChild(content);
                             chat.appendChild(el);
                             return {wrapper: el, node};
                         }
@@ -275,9 +277,9 @@
                                     const data = await resp.json();
                                     if(data.error){ appendAssistantMessage('Error: '+data.error); }
                                     else{
-                                        let txt = `\n══════════════════════════════════════════════════\n`;
+                                        let txt = `\n══════════════════════════════\n`;
                                         txt += `🍽️ Recipe: ${data.title}\n`;
-                                        txt += `══════════════════════════════════════════════════\n\n`;
+                                        txt += `══════════════════════════════\n\n`;
                                         txt += `🥕 Ingredients:\n\n`;
                                         for(const ing of data.ingredients){
                                             txt += `• ${ing.text} ${ing.missing ? '❌' : '✅'}\n`;

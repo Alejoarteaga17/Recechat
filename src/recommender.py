@@ -382,7 +382,6 @@ def interactuar_con_usuario(query_text):
     if interaction_count % 30 == 0:
         evaluar_modelo_periodico()
 
-
 if __name__ == "__main__":
     print("🍳 Recipe AI Recommender (type 'exit' to stop)")
     while True:

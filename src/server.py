@@ -11,6 +11,7 @@ import pandas as pd
 import json
 import time
 from typing import Optional, List
+import re
 from pydantic import BaseModel
 from uuid import uuid4
 
@@ -36,10 +37,37 @@ if not os.path.exists(STATIC_DIR):
 
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
+
+# --- Greeting detection helpers (non-breaking) ---
+_GREETING_PATTERNS = [
+    r"\bhi\b", r"\bhey\b", r"\bhello\b", r"\bhow\b",
+    r"\bgood\s+(morning|afternoon|evening|night)\b",
+    r"\bhow\s+are\s+(you|ya|u)\b", r"\bwhat'?s\s+up\b", r"\bsup\b",
+    r"\bhola\b", r"\bbuenos\s+d[ií]as\b", r"\bbuenas\s+tardes\b", r"\bbuenas\s+noches\b",
+    r"\bque\s*tal\b", r"\bc[oó]mo\s+est[aá]s?\b", r"\bsaludos\b", r"\bciao\b"
+]
+
+def _is_greeting(text: str) -> bool:
+    if not text:
+        return False
+    t = text.strip().lower()
+    # very short messages more likely to be greetings
+    token_count = len(re.findall(r"\w+", t))
+    matched = any(re.search(p, t) for p in _GREETING_PATTERNS)
+    # Treat as greeting if it matches and doesn't contain obvious ingredient separators
+    has_ingredient_separators = ("," in t) or (";" in t) or (" and " in t) or (" with " in t)
+    return matched and (token_count <= 6) and not has_ingredient_separators
+
+def _greeting_reply(text: str) -> str:
+    # Simple multilingual friendly reply
+    return (
+        "Hello! 👋 I'm Recechat. Tell me some ingredients or what you're craving, and I'll suggest recipes.\n"
+        "For example: chicken, garlic, lemon — or ‘pasta with tomato and basil’."
+    )
+
 class Query(BaseModel):
     query: str
     k: int = 5
-
 
 class Feedback(BaseModel):
     user_id: Optional[str] = None
@@ -84,6 +112,16 @@ async def chat_start(payload: ChatStart):
     """Start a chat session: run recommendation, store resultados and return friendly text + top-k items."""
     q = payload.query
     k = payload.k
+    # If the user opened with a greeting, respond naturally without forcing recommendations
+    if _is_greeting(q):
+        session_id = str(uuid4())
+        SESSIONS[session_id] = {
+            'resultados': [],
+            'offset': 0,
+            'more_count': 0,
+            'query': q,
+        }
+        return {'session_id': session_id, 'friendly': _greeting_reply(q), 'results': [], 'offset': 0}
     try:
         resultados = recommender.recomendar_recetas(q, top_k=k)
     except Exception as e:
