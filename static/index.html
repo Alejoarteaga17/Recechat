@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Recechat</title>
+        <style>
+        :root{--bg:#f7f8fb;--card:#fff;--muted:#6b7280;--accent:#2563eb}
+        body { font-family: Inter, system-ui, -apple-system, Roboto, 'Helvetica Neue', Arial; background:var(--bg); margin:0; padding:24px; }
+        .app { max-width: 1000px; margin: 0 auto; }
+        header { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+        h1 { font-size:22px; margin:0; }
+        .controls { display:flex; gap:8px; align-items:center; margin-bottom:16px; }
+        input[type=text], input[type=number] { padding:8px 10px; border-radius:8px; border:1px solid #e6e9ef; }
+        button { background:var(--accent); color:#fff; padding:8px 12px; border:none; border-radius:8px; cursor:pointer; }
+        .results { margin-top:12px; }
+        .card { background:var(--card); border-radius:10px; padding:14px; margin-bottom:12px; box-shadow:0 8px 22px rgba(16,24,40,0.06); }
+        .title { font-weight:700; font-size:16px; color:#0f1724; }
+        .meta { color:var(--muted); font-size:13px; margin-top:6px; }
+        .ingredients { margin-top:8px; color:#374151; font-size:14px; }
+        details summary { cursor:pointer; font-weight:600; margin-top:8px; }
+        details div { margin-top:8px; color:#374151; }
+        .feedback { margin-top:10px; display:flex; gap:8px; }
+        .feedback button { background:#fff; color:#111; border:1px solid #e6e6e6; padding:6px 10px; }
+        .small { font-size:13px; color:var(--muted); }
+
+        /* Chat bubbles */
+        .message { margin:8px 0; display:flex; }
+        .message.user { justify-content:flex-start; }
+        .message.assistant { justify-content:flex-end; }
+        .bubble { max-width:82%; padding:10px 14px; border-radius:12px; }
+        .user-bubble { background:#f1f5f9; color:#0f1724; border-radius:12px; }
+        .assistant-bubble { background:#86efac; color:#072; border-radius:12px; }
+
+        @media (max-width:700px){ .controls{flex-direction:column; align-items:stretch;} }
+        </style>
+    </head>
+    <body>
+        <div class="app">
+            <header>
+            <h1>Recechat - Recipes Recommender</h1>
+            <div class="small">API: <code>/api/chat/start</code></div>
+            </header>
+
+                        <div id="status" class="small">Write a message below and hit send.</div>
+
+                        <div id="chat" style="margin-top:12px; border-radius:8px; background:#fff; padding:12px; min-height:420px; max-height:64vh; overflow:auto; box-shadow:0 6px 18px rgba(16,24,40,0.04);">
+                        <!-- messages will be appended here -->
+                        </div>
+
+                        <!-- Unified chat input -->
+                        <div style="margin-top:12px; display:flex; gap:8px; align-items:center;">
+                            <input id="chat-input" type="text" placeholder="Write a message..." style="flex:1; padding:10px 12px; border-radius:999px; border:1px solid #e6e9ef;" />
+                            <button id="send" style="padding:10px 14px; border-radius:999px;">Send</button>
+                        </div>
+        </div>
+
+        <script>
+            // small state for chat
+            let currentSessionId = null;
+            let lastQuery = '';
+
+            function escapeHtml(unsafe) {
+            if(!unsafe) return '';
+            return unsafe.replace(/[&<"'>]/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#039;"})[m]; });
+            }
+
+            document.getElementById('send').addEventListener('click', sendChatMessage);
+            document.getElementById('chat-input').addEventListener('keydown', (e)=>{ if(e.key==='Enter') sendChatMessage(); });
+
+            async function sendChatMessage(){
+                const inp = document.getElementById('chat-input');
+                const text = inp.value.trim();
+                if(!text) return;
+                inp.value = '';
+                appendUserMessage(text);
+                lastQuery = text;
+                scrollChatToBottom();
+
+                // call chat start
+                try{
+                    const res = await fetch('/api/chat/start', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({query: text, k:5})});
+                    const data = await res.json();
+                    if(data.error){ appendAssistantMessage('Error: '+data.error); return; }
+                    currentSessionId = data.session_id;
+                    if(data.friendly) appendAssistantMessage(data.friendly);
+                    if(data.results && data.results.length) appendResultsAsCards(data.results, currentSessionId, 0);
+                    scrollChatToBottom();
+                }catch(err){ appendAssistantMessage('Error connecting to API: '+err); }
+            }
+
+            // --- Chat UI helpers ---
+            function appendUserMessage(text){
+            const chat = document.getElementById('chat');
+            const el = document.createElement('div');
+            el.className = 'message user';
+            el.innerHTML = `<div class="bubble user-bubble">${escapeHtml(text)}</div>`;
+            chat.appendChild(el);
+            }
+
+            function appendAssistantMessage(text){
+            if(!text) return;
+            const chat = document.getElementById('chat');
+            const el = document.createElement('div');
+            el.className = 'message assistant';
+            el.innerHTML = `<div class="bubble assistant-bubble">${escapeHtml(text).replace(/\n/g,'<br/>')}</div>`;
+            chat.appendChild(el);
+            }
+
+            function appendResultsAsCards(items, session_id, baseIndex=0){
+            const chat = document.getElementById('chat');
+            const container = document.createElement('div');
+            container.style.marginTop='6px';
+            items.forEach((r, idx)=>{
+                        const card = document.createElement('div');
+                card.className='card';
+                card.style.margin='8px 0';
+                card.innerHTML = `
+                            <div class="title">${escapeHtml(r.title)} <span class="meta">(${r.score.toFixed(3)})</span></div>
+                            <div class="ingredients">${escapeHtml(r.ingredients || '')}</div>
+                            <div style="margin-top:8px;display:flex;gap:8px;">
+                                <button data-sid="${session_id}" data-idx="${baseIndex + idx}" class="view-btn">Ver detalles</button>
+                                <button data-id="${r.id}" data-score="${r.score}" class="like-btn">👍 Like</button>
+                                <button data-id="${r.id}" data-score="${r.score}" class="dislike-btn">👎 Dislike</button>
+                                <button data-sid="${session_id}" data-base="${baseIndex}" class="more-btn">Más</button>
+                            </div>
+                `;
+                container.appendChild(card);
+            });
+            // wrap results inside an assistant message bubble area
+            const wrapper = document.createElement('div');
+            wrapper.className = 'message assistant';
+            const inner = document.createElement('div');
+            inner.style.maxWidth = '90%';
+            inner.appendChild(container);
+            wrapper.appendChild(inner);
+            chat.appendChild(wrapper);
+
+            // attach listeners
+                    container.querySelectorAll('.view-btn').forEach(btn=>{
+                btn.addEventListener('click', async (e)=>{
+                const sid = btn.getAttribute('data-sid');
+                            const idx = parseInt(btn.getAttribute('data-idx'));
+                            appendUserMessage('Mostrar detalles receta #' + (idx+1));
+                scrollChatToBottom();
+                const resp = await fetch('/api/chat/select', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({session_id:sid, index:idx})});
+                const data = await resp.json();
+                if(data.error){ appendAssistantMessage('Error: '+data.error); }
+                else{
+                    const txt = `Ingredientes:\n${data.ingredients}\n\nInstrucciones:\n${data.instructions || ''}`;
+                    appendAssistantMessage(txt);
+                }
+                scrollChatToBottom();
+                });
+            });
+
+                    container.querySelectorAll('.like-btn, .dislike-btn').forEach(btn=>{
+                btn.addEventListener('click', async (e)=>{
+                const id = parseInt(btn.getAttribute('data-id'));
+                const score = parseFloat(btn.getAttribute('data-score') || '0');
+                const action = btn.classList.contains('like-btn') ? 'like' : 'dislike';
+                // send feedback
+                try{
+                                await fetch('/api/feedback', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({user_id:null, query:lastQuery || '', recommended_ids:[id], scores:[score], feedback:action, method:'web-chat'})});
+                                appendAssistantMessage(`Feedback ${action} registrado para id=${id}`);
+                }catch(err){ appendAssistantMessage('Error sending feedback: '+err); }
+                scrollChatToBottom();
+                });
+            });
+
+                    container.querySelectorAll('.more-btn').forEach(btn=>{
+                btn.addEventListener('click', async (e)=>{
+                const sid = btn.getAttribute('data-sid');
+                appendUserMessage('Más recetas');
+                scrollChatToBottom();
+                            const resp = await fetch('/api/chat/more', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({session_id:sid})});
+                const data = await resp.json();
+                if(data.error){ appendAssistantMessage('Error: '+data.error); }
+                else{
+                    if(data.text) appendAssistantMessage(data.text);
+                                if(data.items && data.items.length) appendResultsAsCards(data.items, sid, data.offset);
+                }
+                scrollChatToBottom();
+                });
+            });
+            }
+
+            function scrollChatToBottom(){
+            const chat = document.getElementById('chat');
+            chat.scrollTop = chat.scrollHeight;
+            }
+        </script>
+    </body>
+</html>

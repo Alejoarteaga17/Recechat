@@ -1,0 +1,282 @@
+2025-10-29T22:46:04.300282	shown	celular iphone	If I had digital ingredients I'd make a bytes-salad!
+2025-10-29T22:46:46.393694	rejected	celular iphone	Hmm... that doesn't sound like a recipe, but I can help with meal ideas!
+2025-10-29T22:47:02.720400	shown	rice, coconut and cinamon	That doesn't seem like food, but interesting question.
+2025-10-29T22:47:17.438704	shown	Frozen Coconut Yogurt with Cinnamon (0.30); Coconut Doughnuts (0.30); Mini Raspberry and Coconut Cream Tarts (0.28)	No exact match, but how about something with Frozen Coconut Yogurt with Cinnamon (0.30); Coconut Doughnuts (0.30); Mini Raspberry and Coconut Cream Tarts (0.28)?
+2025-10-29T22:47:17.461353	more	rice, coconut and cinamon	No exact match, but how about something with Frozen Coconut Yogurt with Cinnamon (0.30); Coconut Doughnuts (0.30); Mini Raspberry and Coconut Cream Tarts (0.28)?
+2025-10-29T22:47:26.986382	accepted	rice, coconut and cinamon	No exact match, but how about something with ?
+2025-10-29T23:32:43.489236	shown	cinamon, flour, sugar	Hmm... that doesn't sound like a recipe, but I can cook up an idea!
+2025-10-29T23:32:50.473541	shown	Gluten-Free Sesame Sandwich Bread (0.23); Cherry Buttermilk Clafoutis (0.22); Peach Galette (0.22)	No exact match, but how about something with Gluten-Free Sesame Sandwich Bread (0.23); Cherry Buttermilk Clafoutis (0.22); Peach Galette (0.22)?
+2025-10-29T23:32:50.482630	more	cinamon, flour, sugar	No exact match, but how about something with Gluten-Free Sesame Sandwich Bread (0.23); Cherry Buttermilk Clafoutis (0.22); Peach Galette (0.22)?
+2025-10-29T23:33:10.333792	accepted	cinamon, flour, sugar	Hmm... that doesn't sound like a recipe, but I can help with meal ideas!
+2025-10-29T23:33:26.665104	shown	show the most common	Hmm... that doesn't sound like a recipe, but I can cook up an idea!
+2025-10-29T23:33:34.190864	rejected	show the most common	I couldn't find an exact match 😅. Try these common ingredients: .
+2025-10-29T23:36:53.845588	shown	garlic, sauce, salt	If I had digital ingredients I'd make a bytes-salad!
+2025-10-29T23:37:14.874323	shown	Eggy Grits Soufflé (0.19); Chipotle Aïoli (0.19); Stuffed Meatloaf (0.19)	These recipes seem close to what you described: Eggy Grits Soufflé (0.19); Chipotle Aïoli (0.19); Stuffed Meatloaf (0.19). Would you like more options?
+2025-10-29T23:37:14.878033	more	garlic, sauce, salt	These recipes seem close to what you described: Eggy Grits Soufflé (0.19); Chipotle Aïoli (0.19); Stuffed Meatloaf (0.19). Would you like more options?
+2025-10-29T23:38:16.022717	accepted	garlic, sauce, salt	Here are some recipes you might like:
+
+Do you want more?
+2025-10-29T23:38:23.459944	shown	none	If I had digital ingredients I'd make a bytes-salad!
+2025-10-29T23:38:26.868448	rejected	none	I couldn't find an exact match 😅. Try these common ingredients: .
+2025-10-30T12:48:27.854084	shown	rice, beans, chocolate	Hmm... that doesn't sound like a recipe, but I can cook up an idea!
+2025-10-30T12:50:15.093430	shown	Chocolate Spoonful Cake (0.26); Double Chocolate Raspberry Cake (0.24); Chocolate Mousse Pie (0.23)	I couldn't find an exact match 😅. Try these common ingredients: {list}.
+2025-10-30T12:50:15.095806	more	rice, beans, chocolate	I couldn't find an exact match 😅. Try these common ingredients: {list}.
+2025-10-30T12:50:27.218532	rejected	rice, beans, chocolate	No exact match, but how about something with {list}?
+2025-10-30T13:19:58.914245	shown	rice beans salt	If I had digital ingredients I'd make a bytes-salad!
+2025-10-30T13:20:39.401268	accepted	rice beans salt	Hmm... that doesn't sound like a recipe, but I can help with meal ideas!
+2025-10-30T13:22:01.128332	shown	oat, milk, banana, almond, cookie	These recipes seem close to what you described: {list}. Would you like more options?
+2025-10-30T13:43:23.439132	rejected	oat, milk, banana, almond, cookie	These recipes seem close to what you described: {list}. Would you like more options?
+2025-10-30T13:54:51.812814	shown	oat, milk, banana, almonds	Here are some recipes you might like:
+Creamy Fettuccine with Peas and Basil (0.29); Almond Butter and Finger Bananas on Fruit Bread (0.24); Banana Oatmeal Chocolate Chip Cookies (0.18)
+Do you want more?
+2025-10-31T14:14:32.409308	shown	oat, milk, banana and almonds	Hmm... that doesn't sound like a recipe, but I can help with meal ideas!
+2025-10-31T14:15:37.376477	more	more	Here are some recipes you might like:
+4. Banana Pudding (0.18); 5. Cornbread Muffins With Whipped Sweet Corn (0.16); 6. Gluten-Free Blueberry Pancakes with Caramelized Bananas (0.15)
+Do you want more?
+2025-10-31T14:16:58.904849	more	more	Here are some recipes you might like:
+7. Banana and Blueberry Overnight Oats (0.15); 8. Bananas Foster (0.15); 9. Vegan Banana Ice Cream (0.14)
+Do you want more?
+2025-10-31T14:21:21.625442	accepted	oat, milk, banana and almonds	Hmm... that doesn't sound like a recipe, but I can help with meal ideas!
+2025-10-31T14:22:02.676795	shown	rice, tomato, chicken	Hmm... that doesn't sound like a recipe, but I can help with meal ideas!
+2025-10-31T14:22:12.343918	more	more	Here are some recipes you might like:
+4. Caramel Chicken (0.18); 5. Easy Green Curry with Chicken, Bell Pepper, and Sugar Snap Peas (0.18); 6. Wild Rice Stuffing with Pine Nuts (0.17)
+Do you want more?
+2025-10-31T14:22:22.481863	more	more	Here are some recipes you might like:
+7. Yellow Rice (0.17); 8. Brad's Campsite Jambalaya (0.17); 9. Chicken Stew with Okra (0.16)
+Do you want more?
+2025-10-31T14:35:36.989802	shown	oat, milk, banana and almonds	Here are some recipes you might like:
+1. Creamy Fettuccine with Peas and Basil (0.29)
+2. Almond Butter and Finger Bananas on Fruit Bread (0.24)
+3. Banana Oatmeal Chocolate Chip Cookies (0.18)
+2025-10-31T14:36:15.705864	more	more	Here are some recipes you might like:
+4. Banana Pudding (0.18)
+5. Cornbread Muffins With Whipped Sweet Corn (0.16)
+6. Gluten-Free Blueberry Pancakes with Caramelized Bananas (0.15)
+Do you want more?
+2025-10-31T14:36:29.238168	more	more	Here are some recipes you might like:
+7. Banana and Blueberry Overnight Oats (0.15)
+8. Bananas Foster (0.15)
+9. Vegan Banana Ice Cream (0.14)
+Do you want more?
+2025-10-31T14:37:01.949681	accepted	oat, milk, banana and almonds	Here are some recipes you might like:
+1. Creamy Fettuccine with Peas and Basil (0.29)
+2. Almond Butter and Finger Bananas on Fruit Bread (0.24)
+3. Banana Oatmeal Chocolate Chip Cookies (0.18)
+2025-10-31T14:46:41.405919	shown	banana, tomato, and rice	Here are some recipes you might like:
+1. Almond Butter and Finger Bananas on Fruit Bread (0.41)
+2. Banana Pudding (0.28)
+3. Bananas Foster (0.26)
+2025-10-31T14:46:56.102292	accepted	banana, tomato, and rice	Here are some recipes you might like:
+1. Almond Butter and Finger Bananas on Fruit Bread (0.41)
+2. Banana Pudding (0.28)
+3. Bananas Foster (0.26)
+2025-10-31T14:47:05.355823	shown	car, bed, sun	Here are some recipes you might like:
+1. Golden Sunset (0.24)
+2. Jerusalem Artichoke Pickles (0.18)
+3. Scallops with Hazelnuts and Warm Sun Gold Tomatoes (0.17)
+2025-10-31T14:47:56.403206	rejected	car, bed, sun	Here are some recipes you might like:
+1. Golden Sunset (0.24)
+2. Jerusalem Artichoke Pickles (0.18)
+3. Scallops with Hazelnuts and Warm Sun Gold Tomatoes (0.17)
+2025-10-31T14:48:31.992463	shown	car, bed, cat and computer	I couldn't find anything very similar 😅
+Try other ingredients like: oil, coconut, sauce, salt, egg
+2025-10-31T15:44:02.541929	shown	chicken, tomato, rice and eggs	Here are some recipes you might like:
+1. Parboiled Rice (0.21)
+2. Sweet and Spicy Chicken Drumsticks (0.21)
+3. Chicken Teriyaki (0.19)
+2025-10-31T15:44:23.988696	more	more	Here are some recipes you might like:
+4. Caramel Chicken (0.18)
+5. Easy Green Curry with Chicken, Bell Pepper, and Sugar Snap Peas (0.18)
+6. Wild Rice Stuffing with Pine Nuts (0.17)
+Do you want more?
+2025-10-31T15:44:38.489476	more	more	Here are some recipes you might like:
+7. Yellow Rice (0.17)
+8. Brad's Campsite Jambalaya (0.17)
+9. Chicken Stew with Okra (0.16)
+Do you want more?
+2025-10-31T15:50:59.380385	accepted	chicken, tomato, rice and eggs	Here are some recipes you might like:
+1. Parboiled Rice (0.21)
+2. Sweet and Spicy Chicken Drumsticks (0.21)
+3. Chicken Teriyaki (0.19)
+2025-10-31T17:22:48.966179	shown	oat, milk, banana and almonds	Here are some recipes you might like:
+1. Creamy Fettuccine with Peas and Basil (0.29)
+2. Almond Butter and Finger Bananas on Fruit Bread (0.24)
+3. Banana Oatmeal Chocolate Chip Cookies (0.18)
+2025-10-31T17:24:13.490174	accepted	oat, milk, banana and almonds	Here are some recipes you might like:
+1. Creamy Fettuccine with Peas and Basil (0.29)
+2. Almond Butter and Finger Bananas on Fruit Bread (0.24)
+3. Banana Oatmeal Chocolate Chip Cookies (0.18)
+2025-10-31T17:28:42.967521	shown	oat, milk, banana and almonds	Here are some recipes you might like:
+1. Creamy Fettuccine with Peas and Basil (0.29)
+2. Almond Butter and Finger Bananas on Fruit Bread (0.24)
+3. Banana Oatmeal Chocolate Chip Cookies (0.18)
+2025-10-31T17:30:17.879013	accepted	oat, milk, banana and almonds	Here are some recipes you might like:
+1. Creamy Fettuccine with Peas and Basil (0.29)
+2. Almond Butter and Finger Bananas on Fruit Bread (0.24)
+3. Banana Oatmeal Chocolate Chip Cookies (0.18)
+2025-11-02T18:44:42.398859	shown	chicken, mushroom, rice and salt	Here are some recipes you might like:
+1. Cast-Iron Mushrooms (0.27)
+2. Wild Mushroom Risotto (0.22)
+3. Wild Rice and Mushroom Stuffing (0.22)
+2025-11-02T18:45:23.222433	accepted	chicken, mushroom, rice and salt	Here are some recipes you might like:
+1. Cast-Iron Mushrooms (0.27)
+2. Wild Mushroom Risotto (0.22)
+3. Wild Rice and Mushroom Stuffing (0.22)
+2025-11-02T19:17:29.867910	shown	corn, rice, eggs and chicken	Here are some recipes you might like:
+1. Parboiled Rice (0.19)
+2. Sweet and Spicy Chicken Drumsticks (0.19)
+3. Succotash of Fresh Corn, Lima Beans, Tomatoes and Onions (0.18)
+2025-11-02T19:20:08.905803	accepted	corn, rice, eggs and chicken	Here are some recipes you might like:
+1. Parboiled Rice (0.19)
+2. Sweet and Spicy Chicken Drumsticks (0.19)
+3. Succotash of Fresh Corn, Lima Beans, Tomatoes and Onions (0.18)
+2025-11-02T19:20:54.195921	shown	tomato, chicken, rice and carrot	Here are some recipes you might like:
+1. Ivory Carrot Soup with a Fine Dice of Orange Carrots (0.26)
+2. Roasted Carrots (0.22)
+3. Parboiled Rice (0.17)
+2025-11-02T19:29:28.448218	accepted	tomato, chicken, rice and carrot	Here are some recipes you might like:
+1. Ivory Carrot Soup with a Fine Dice of Orange Carrots (0.26)
+2. Roasted Carrots (0.22)
+3. Parboiled Rice (0.17)
+2025-11-02T19:29:42.983880	shown	oat, milk, almonds and banana	Here are some recipes you might like:
+1. Creamy Fettuccine with Peas and Basil (0.29)
+2. Almond Butter and Finger Bananas on Fruit Bread (0.24)
+3. Banana Oatmeal Chocolate Chip Cookies (0.18)
+2025-11-02T19:31:24.190442	accepted	oat, milk, almonds and banana	Here are some recipes you might like:
+1. Creamy Fettuccine with Peas and Basil (0.29)
+2. Almond Butter and Finger Bananas on Fruit Bread (0.24)
+3. Banana Oatmeal Chocolate Chip Cookies (0.18)
+2025-11-02T22:02:06.581064	shown	tomato, rice, chicken and potato	Here are some recipes you might like:
+1. Parboiled Rice (0.17)
+2. Sweet and Spicy Chicken Drumsticks (0.17)
+3. Chicken Stew with Okra (0.17)
+2025-11-02T22:04:25.321184	accepted	tomato, rice, chicken and potato	Here are some recipes you might like:
+1. Parboiled Rice (0.17)
+2. Sweet and Spicy Chicken Drumsticks (0.17)
+3. Chicken Stew with Okra (0.17)
+2025-11-02T22:04:48.231452	shown	banana, apple, mango and pineapple	Here are some recipes you might like:
+1. Almond Butter and Finger Bananas on Fruit Bread (0.29)
+2. Banana and Mango Spring Rolls with Coconut-Chocolate Ganache (0.27)
+3. Homemade "Dole Whip" (0.26)
+2025-11-02T22:08:07.262699	accepted	banana, apple, mango and pineapple	Here are some recipes you might like:
+1. Almond Butter and Finger Bananas on Fruit Bread (0.29)
+2. Banana and Mango Spring Rolls with Coconut-Chocolate Ganache (0.27)
+3. Homemade "Dole Whip" (0.26)
+2025-11-02T22:09:32.223919	shown	banana, mango, apple and pineapple	Here are some recipes you might like:
+1. Almond Butter and Finger Bananas on Fruit Bread (0.29)
+2. Banana and Mango Spring Rolls with Coconut-Chocolate Ganache (0.27)
+3. Homemade "Dole Whip" (0.26)
+2025-11-02T22:10:33.697055	accepted	banana, mango, apple and pineapple	Here are some recipes you might like:
+1. Almond Butter and Finger Bananas on Fruit Bread (0.29)
+2. Banana and Mango Spring Rolls with Coconut-Chocolate Ganache (0.27)
+3. Homemade "Dole Whip" (0.26)
+2025-11-02T22:12:01.718354	shown	banana, mango, eggs, mint, chocolate, coconut, sugar and ginger	Here are some recipes you might like:
+1. Banana and Mango Spring Rolls with Coconut-Chocolate Ganache (0.24)
+2. Chocolate-Mint Shamrock Shake (0.23)
+3. How To Temper Chocolate (0.21)
+2025-11-02T22:15:55.736962	accepted	banana, mango, eggs, mint, chocolate, coconut, sugar and ginger	Here are some recipes you might like:
+1. Banana and Mango Spring Rolls with Coconut-Chocolate Ganache (0.24)
+2. Chocolate-Mint Shamrock Shake (0.23)
+3. How To Temper Chocolate (0.21)
+2025-11-02T22:16:01.949300	shown	banana, mango, eggs, mint, chocolate, coconut, sugar and ginger	Here are some recipes you might like:
+1. Banana and Mango Spring Rolls with Coconut-Chocolate Ganache (0.24)
+2. Chocolate-Mint Shamrock Shake (0.23)
+3. How To Temper Chocolate (0.21)
+2025-11-02T22:18:23.985590	accepted	banana, mango, eggs, mint, chocolate, coconut, sugar and ginger	Here are some recipes you might like:
+1. Banana and Mango Spring Rolls with Coconut-Chocolate Ganache (0.24)
+2. Chocolate-Mint Shamrock Shake (0.23)
+3. How To Temper Chocolate (0.21)
+2025-11-02T22:34:47.502987	shown	spaghetti	Here are some recipes you might like:
+1. Spaghetti With Marinara Sauce (0.38)
+2. Pasta with Garlic-Scape Pesto (0.36)
+3. Spaghetti Aglio e Olio with Lots of Kale (0.35)
+2025-11-02T22:35:22.259423	accepted	spaghetti	Here are some recipes you might like:
+1. Spaghetti With Marinara Sauce (0.38)
+2. Pasta with Garlic-Scape Pesto (0.36)
+3. Spaghetti Aglio e Olio with Lots of Kale (0.35)
+2025-11-02T22:35:25.233777	shown	pasta	Here are some recipes you might like:
+1. Asparagus Ravioli in Parmesan Sauce (0.36)
+2. Pasta with Peas, Cream, Parsley, and Mint (0.33)
+3. Capellini en Brodo (0.32)
+2025-11-02T22:35:37.128882	more	more	Here are some recipes you might like:
+4. Butternut Squash Cappellacci with Sage Brown Butter (0.32)
+5. Campanelle with Tomatoes and Feta (0.31)
+6. Pasta with Tomatoes and Mozzarella (0.31)
+Do you want more?
+2025-11-02T22:35:45.084621	more	more	Here are some recipes you might like:
+7. Orrechiette with Caramelized Onions, Sugar Snap Peas, and Ricotta Cheese (0.31)
+8. Baked Pasta Shells with Sausage and Greens (0.30)
+9. Chicken Soup with Stars and Meatballs (0.30)
+Do you want more?
+2025-11-02T23:18:06.672386	shown	pasta	Here are some recipes you might like:
+1. Asparagus Ravioli in Parmesan Sauce (0.36)
+2. Pasta with Peas, Cream, Parsley, and Mint (0.33)
+3. Capellini en Brodo (0.32)
+2025-11-02T23:18:26.567166	rejected	pasta	Here are some recipes you might like:
+1. Asparagus Ravioli in Parmesan Sauce (0.36)
+2. Pasta with Peas, Cream, Parsley, and Mint (0.33)
+3. Capellini en Brodo (0.32)
+2025-11-02T23:18:35.716874	shown	spahgetti	Here are some recipes you might like:
+1. Spaghetti With Marinara Sauce (0.15)
+2. End-of-the-Week Deli Sandwich (0.13)
+3. Steamed Japanese Rice (0.13)
+2025-11-02T23:40:40.861917	shown	banana, mango, eggs, mint, chocolate, coconut, sugar and ginger	Here are some recipes you might like:
+1. Banana and Mango Spring Rolls with Coconut-Chocolate Ganache (0.42)
+2. Bitter Orange Crème Brûlée (0.38)
+3. Chocolate-Mint Pudding Cakes (0.38)
+2025-11-02T23:41:48.524312	accepted	banana, mango, eggs, mint, chocolate, coconut, sugar and ginger	Here are some recipes you might like:
+1. Banana and Mango Spring Rolls with Coconut-Chocolate Ganache (0.42)
+2. Bitter Orange Crème Brûlée (0.38)
+3. Chocolate-Mint Pudding Cakes (0.38)
+2025-11-03T00:16:08.281337	shown	carrot, rice, salmon, apple and sugar	Here are some recipes you might like:
+1. Miso-Glazed Salmon Skewers (0.39)
+2. Sesame Wonton Triangles with Smoked Salmon and Wasabi (0.36)
+3. Salmon with Hot Sauce Vinaigrette and Pickled Veg (0.36)
+2025-11-03T00:30:24.358349	accepted	carrot, rice, salmon, apple and sugar	Here are some recipes you might like:
+1. Miso-Glazed Salmon Skewers (0.39)
+2. Sesame Wonton Triangles with Smoked Salmon and Wasabi (0.36)
+3. Salmon with Hot Sauce Vinaigrette and Pickled Veg (0.36)
+2025-11-03T00:50:15.556749	shown	carrot, beans, rice, chicken, salt, onion, tomato, sugar and spaghetti	Here are some recipes you might like:
+1. B.l.t. Salad (0.36)
+2. Fully Salted Roast Chicken (0.34)
+3. Thai Beef with Basil (0.34)
+2025-11-03T00:53:31.465904	accepted	carrot, beans, rice, chicken, salt, onion, tomato, sugar and spaghetti	Here are some recipes you might like:
+1. B.l.t. Salad (0.36)
+2. Fully Salted Roast Chicken (0.34)
+3. Thai Beef with Basil (0.34)
+2025-11-03T02:25:41.262495	shown	hello	Here are some recipes you might like:
+1. Fearless Sous Vide Poached Eggs (0.13)
+2. Big-Batch Hard-Boiled Eggs (0.13)
+3. Hard-Boiled Eggs (0.13)
+2025-11-03T02:26:10.342133	shown	ahora quiero ver la receta #2	Here are some recipes you might like:
+1. Lacy Parmesan Crisps (0.16)
+2. Mexican Street Corn (Elote) (0.15)
+3. Plátanos Horneados con Crema y Queso (Baked Banana With Crema and Cheese) (0.14)
+2025-11-03T02:26:37.756988	shown	rice, beans, salt and eggs	Here are some recipes you might like:
+1. Chopstick Ready Rice (0.41)
+2. Avgolemono (0.37)
+3. Spiced Fava Bean Soup with Rice and Tomato (0.35)
+2025-11-03T02:26:42.445766	more	more	Here are some recipes you might like:
+4. Breakfast Stack (0.35)
+5. Basmati Rice (0.34)
+Do you want more?
+2025-11-03T02:27:11.228593	shown	mas	Here are some recipes you might like:
+1. Jalapeño Cheese Grits (0.16)
+2. Quick Tiramisu (0.15)
+3. Chocolate Swirl Tiramisu (0.14)
+2025-11-03T02:27:29.247714	shown	clear	Here are some recipes you might like:
+1. Plum Wine (0.41)
+2. Cherry Vodka (0.35)
+3. Fabric-Covered Vase Centerpiece (0.35)
+2025-11-03T02:29:23.625281	shown	chicke, onions, garlic	Here are some recipes you might like:
+1. Garlic Confit (0.42)
+2. Fermented Garlic Honey (0.36)
+3. Wilted Spinach with Roasted Garlic (0.34)
+2025-11-03T02:29:35.528249	shown	more	Here are some recipes you might like:
+1. Kiwi Ice Pop (0.09)
+2. How To Temper Chocolate (0.09)
+3. Vegan Banana Ice Cream (0.08)
+2025-11-03T02:29:44.044365	more	more	Here are some recipes you might like:
+4. Roasted-Garlic Oil (0.33)
+5. Chickpea Ragout (0.32)
+Do you want more?

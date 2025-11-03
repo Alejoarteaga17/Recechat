@@ -1,0 +1,10 @@
+streamlit>=1.0
+pandas
+numpy
+scikit-learn
+joblib
+scipy
+nltk
+sentence-transformers>=2.2.2
+fastapi>=0.70.0
+uvicorn>=0.15.0

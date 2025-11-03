@@ -1,0 +1,9 @@
+{
+  "templates": [
+    "These recipes seem close to what you described: {list}. Would you like more options?",
+    "I couldn't find an exact match 😅. Try these common ingredients: {list}.",
+    "Hmm... that doesn't sound like a recipe, but I can help with meal ideas!",
+    "Here are some recipes you might like:\n{list}\nDo you want more?",
+    "No exact match, but how about something with {list}?"
+  ]
+}

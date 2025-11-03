@@ -1,0 +1,352 @@
+{
+  "If I had digital ingredients I'd make a bytes-salad!": {
+    "shown": 4,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-10-30T13:19:58.916576"
+  },
+  "Hmm... that doesn't sound like a recipe, but I can help with meal ideas!": {
+    "shown": 2,
+    "accepted": 3,
+    "rejected": 1,
+    "more": 0,
+    "last_shown": "2025-10-31T14:22:02.678566"
+  },
+  "That doesn't seem like food, but interesting question.": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-10-29T22:47:02.757911"
+  },
+  "No exact match, but how about something with Frozen Coconut Yogurt with Cinnamon (0.30); Coconut Doughnuts (0.30); Mini Raspberry and Coconut Cream Tarts (0.28)?": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-10-29T22:47:17.508677"
+  },
+  "No exact match, but how about something with ?": {
+    "shown": 0,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-10-29T22:47:27.010360"
+  },
+  "Hmm... that doesn't sound like a recipe, but I can cook up an idea!": {
+    "shown": 3,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-10-30T12:48:27.857760"
+  },
+  "No exact match, but how about something with Gluten-Free Sesame Sandwich Bread (0.23); Cherry Buttermilk Clafoutis (0.22); Peach Galette (0.22)?": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-10-29T23:32:50.519777"
+  },
+  "I couldn't find an exact match 😅. Try these common ingredients: .": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 2,
+    "more": 0,
+    "last_shown": "2025-10-29T23:38:26.870348"
+  },
+  "These recipes seem close to what you described: Eggy Grits Soufflé (0.19); Chipotle Aïoli (0.19); Stuffed Meatloaf (0.19). Would you like more options?": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-10-29T23:37:14.923475"
+  },
+  "Here are some recipes you might like:\n\nDo you want more?": {
+    "shown": 0,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-10-29T23:38:16.096074"
+  },
+  "I couldn't find an exact match 😅. Try these common ingredients: {list}.": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-10-30T12:50:15.116080"
+  },
+  "No exact match, but how about something with {list}?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 1,
+    "more": 0,
+    "last_shown": "2025-10-30T12:50:27.219722"
+  },
+  "These recipes seem close to what you described: {list}. Would you like more options?": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 1,
+    "more": 0,
+    "last_shown": "2025-10-30T13:43:23.464664"
+  },
+  "Here are some recipes you might like:\nCreamy Fettuccine with Peas and Basil (0.29); Almond Butter and Finger Bananas on Fruit Bread (0.24); Banana Oatmeal Chocolate Chip Cookies (0.18)\nDo you want more?": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-10-30T13:54:51.814497"
+  },
+  "Here are some recipes you might like:\n4. Banana Pudding (0.18); 5. Cornbread Muffins With Whipped Sweet Corn (0.16); 6. Gluten-Free Blueberry Pancakes with Caramelized Bananas (0.15)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-10-31T14:15:37.377980"
+  },
+  "Here are some recipes you might like:\n7. Banana and Blueberry Overnight Oats (0.15); 8. Bananas Foster (0.15); 9. Vegan Banana Ice Cream (0.14)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-10-31T14:16:58.906362"
+  },
+  "Here are some recipes you might like:\n4. Caramel Chicken (0.18); 5. Easy Green Curry with Chicken, Bell Pepper, and Sugar Snap Peas (0.18); 6. Wild Rice Stuffing with Pine Nuts (0.17)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-10-31T14:22:12.345908"
+  },
+  "Here are some recipes you might like:\n7. Yellow Rice (0.17); 8. Brad's Campsite Jambalaya (0.17); 9. Chicken Stew with Okra (0.16)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-10-31T14:22:22.483718"
+  },
+  "Here are some recipes you might like:\n1. Creamy Fettuccine with Peas and Basil (0.29)\n2. Almond Butter and Finger Bananas on Fruit Bread (0.24)\n3. Banana Oatmeal Chocolate Chip Cookies (0.18)": {
+    "shown": 4,
+    "accepted": 4,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-02T19:31:24.191839"
+  },
+  "Here are some recipes you might like:\n4. Banana Pudding (0.18)\n5. Cornbread Muffins With Whipped Sweet Corn (0.16)\n6. Gluten-Free Blueberry Pancakes with Caramelized Bananas (0.15)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-10-31T14:36:15.708586"
+  },
+  "Here are some recipes you might like:\n7. Banana and Blueberry Overnight Oats (0.15)\n8. Bananas Foster (0.15)\n9. Vegan Banana Ice Cream (0.14)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-10-31T14:36:29.240584"
+  },
+  "Here are some recipes you might like:\n1. Almond Butter and Finger Bananas on Fruit Bread (0.41)\n2. Banana Pudding (0.28)\n3. Bananas Foster (0.26)": {
+    "shown": 1,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-10-31T14:46:56.104069"
+  },
+  "Here are some recipes you might like:\n1. Golden Sunset (0.24)\n2. Jerusalem Artichoke Pickles (0.18)\n3. Scallops with Hazelnuts and Warm Sun Gold Tomatoes (0.17)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 1,
+    "more": 0,
+    "last_shown": "2025-10-31T14:47:56.405072"
+  },
+  "I couldn't find anything very similar 😅\nTry other ingredients like: oil, coconut, sauce, salt, egg": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-10-31T14:48:32.002544"
+  },
+  "Here are some recipes you might like:\n1. Parboiled Rice (0.21)\n2. Sweet and Spicy Chicken Drumsticks (0.21)\n3. Chicken Teriyaki (0.19)": {
+    "shown": 1,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-10-31T15:50:59.393347"
+  },
+  "Here are some recipes you might like:\n4. Caramel Chicken (0.18)\n5. Easy Green Curry with Chicken, Bell Pepper, and Sugar Snap Peas (0.18)\n6. Wild Rice Stuffing with Pine Nuts (0.17)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-10-31T15:44:23.990258"
+  },
+  "Here are some recipes you might like:\n7. Yellow Rice (0.17)\n8. Brad's Campsite Jambalaya (0.17)\n9. Chicken Stew with Okra (0.16)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-10-31T15:44:38.491010"
+  },
+  "Here are some recipes you might like:\n1. Cast-Iron Mushrooms (0.27)\n2. Wild Mushroom Risotto (0.22)\n3. Wild Rice and Mushroom Stuffing (0.22)": {
+    "shown": 1,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-02T18:45:23.224580"
+  },
+  "Here are some recipes you might like:\n1. Parboiled Rice (0.19)\n2. Sweet and Spicy Chicken Drumsticks (0.19)\n3. Succotash of Fresh Corn, Lima Beans, Tomatoes and Onions (0.18)": {
+    "shown": 1,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-02T19:20:08.907074"
+  },
+  "Here are some recipes you might like:\n1. Ivory Carrot Soup with a Fine Dice of Orange Carrots (0.26)\n2. Roasted Carrots (0.22)\n3. Parboiled Rice (0.17)": {
+    "shown": 1,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-02T19:29:28.450511"
+  },
+  "Here are some recipes you might like:\n1. Parboiled Rice (0.17)\n2. Sweet and Spicy Chicken Drumsticks (0.17)\n3. Chicken Stew with Okra (0.17)": {
+    "shown": 1,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-02T22:04:25.346729"
+  },
+  "Here are some recipes you might like:\n1. Almond Butter and Finger Bananas on Fruit Bread (0.29)\n2. Banana and Mango Spring Rolls with Coconut-Chocolate Ganache (0.27)\n3. Homemade \"Dole Whip\" (0.26)": {
+    "shown": 2,
+    "accepted": 2,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-02T22:10:33.730550"
+  },
+  "Here are some recipes you might like:\n1. Banana and Mango Spring Rolls with Coconut-Chocolate Ganache (0.24)\n2. Chocolate-Mint Shamrock Shake (0.23)\n3. How To Temper Chocolate (0.21)": {
+    "shown": 2,
+    "accepted": 2,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-02T22:18:24.019114"
+  },
+  "Here are some recipes you might like:\n1. Spaghetti With Marinara Sauce (0.38)\n2. Pasta with Garlic-Scape Pesto (0.36)\n3. Spaghetti Aglio e Olio with Lots of Kale (0.35)": {
+    "shown": 1,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-02T22:35:22.261792"
+  },
+  "Here are some recipes you might like:\n1. Asparagus Ravioli in Parmesan Sauce (0.36)\n2. Pasta with Peas, Cream, Parsley, and Mint (0.33)\n3. Capellini en Brodo (0.32)": {
+    "shown": 2,
+    "accepted": 0,
+    "rejected": 1,
+    "more": 0,
+    "last_shown": "2025-11-02T23:18:26.568801"
+  },
+  "Here are some recipes you might like:\n4. Butternut Squash Cappellacci with Sage Brown Butter (0.32)\n5. Campanelle with Tomatoes and Feta (0.31)\n6. Pasta with Tomatoes and Mozzarella (0.31)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-11-02T22:35:37.130781"
+  },
+  "Here are some recipes you might like:\n7. Orrechiette with Caramelized Onions, Sugar Snap Peas, and Ricotta Cheese (0.31)\n8. Baked Pasta Shells with Sausage and Greens (0.30)\n9. Chicken Soup with Stars and Meatballs (0.30)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-11-02T22:35:45.086867"
+  },
+  "Here are some recipes you might like:\n1. Spaghetti With Marinara Sauce (0.15)\n2. End-of-the-Week Deli Sandwich (0.13)\n3. Steamed Japanese Rice (0.13)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-02T23:18:35.718037"
+  },
+  "Here are some recipes you might like:\n1. Banana and Mango Spring Rolls with Coconut-Chocolate Ganache (0.42)\n2. Bitter Orange Crème Brûlée (0.38)\n3. Chocolate-Mint Pudding Cakes (0.38)": {
+    "shown": 1,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-02T23:41:48.525628"
+  },
+  "Here are some recipes you might like:\n1. Miso-Glazed Salmon Skewers (0.39)\n2. Sesame Wonton Triangles with Smoked Salmon and Wasabi (0.36)\n3. Salmon with Hot Sauce Vinaigrette and Pickled Veg (0.36)": {
+    "shown": 1,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T00:30:24.361509"
+  },
+  "Here are some recipes you might like:\n1. B.l.t. Salad (0.36)\n2. Fully Salted Roast Chicken (0.34)\n3. Thai Beef with Basil (0.34)": {
+    "shown": 1,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T00:53:31.467198"
+  },
+  "Here are some recipes you might like:\n1. Fearless Sous Vide Poached Eggs (0.13)\n2. Big-Batch Hard-Boiled Eggs (0.13)\n3. Hard-Boiled Eggs (0.13)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T02:25:41.266283"
+  },
+  "Here are some recipes you might like:\n1. Lacy Parmesan Crisps (0.16)\n2. Mexican Street Corn (Elote) (0.15)\n3. Plátanos Horneados con Crema y Queso (Baked Banana With Crema and Cheese) (0.14)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T02:26:10.376549"
+  },
+  "Here are some recipes you might like:\n1. Chopstick Ready Rice (0.41)\n2. Avgolemono (0.37)\n3. Spiced Fava Bean Soup with Rice and Tomato (0.35)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T02:26:37.788141"
+  },
+  "Here are some recipes you might like:\n4. Breakfast Stack (0.35)\n5. Basmati Rice (0.34)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-11-03T02:26:42.447687"
+  },
+  "Here are some recipes you might like:\n1. Jalapeño Cheese Grits (0.16)\n2. Quick Tiramisu (0.15)\n3. Chocolate Swirl Tiramisu (0.14)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T02:27:11.262494"
+  },
+  "Here are some recipes you might like:\n1. Plum Wine (0.41)\n2. Cherry Vodka (0.35)\n3. Fabric-Covered Vase Centerpiece (0.35)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T02:27:29.275867"
+  },
+  "Here are some recipes you might like:\n1. Garlic Confit (0.42)\n2. Fermented Garlic Honey (0.36)\n3. Wilted Spinach with Roasted Garlic (0.34)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T02:29:23.647723"
+  },
+  "Here are some recipes you might like:\n1. Kiwi Ice Pop (0.09)\n2. How To Temper Chocolate (0.09)\n3. Vegan Banana Ice Cream (0.08)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T02:29:35.554188"
+  },
+  "Here are some recipes you might like:\n4. Roasted-Garlic Oil (0.33)\n5. Chickpea Ragout (0.32)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-11-03T02:29:44.046547"
+  }
+}
