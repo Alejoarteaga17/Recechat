@@ -1,0 +1,8 @@
+streamlit>=1.0
+pandas
+numpy
+scikit-learn
+joblib
+scipy
+nltk
+sentence-transformers>=2.2.2
