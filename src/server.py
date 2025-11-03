@@ -123,7 +123,7 @@ async def chat_start(payload: ChatStart):
             pass
         compact.append({'id': rid, 'title': title, 'score': float(score), 'ingredients': snippet})
 
-    return {'session_id': session_id, 'friendly': friendly, 'results': compact}
+    return {'session_id': session_id, 'friendly': friendly, 'results': compact, 'offset': 0}
 
 
 class ChatMore(BaseModel):
@@ -202,6 +202,52 @@ async def chat_select(payload: ChatSelect):
         return {'id': int(recipe_index), 'title': title, 'ingredients': ingredients, 'instructions': ''}
 
     return {'error': 'recipe not found'}
+
+
+class ChatRecipeIngredients(BaseModel):
+    session_id: str
+    index: int
+    available: str
+
+
+@app.post('/api/chat/recipe_ingredients')
+async def chat_recipe_ingredients(payload: ChatRecipeIngredients):
+    """Return the ingredient list for a recipe with availability marks based on user's available ingredients text."""
+    sess = SESSIONS.get(payload.session_id)
+    if not sess:
+        return {'error': 'invalid session'}
+
+    resultados = sess['resultados']
+    idx = payload.index
+    if idx < 0 or idx >= len(resultados):
+        return {'error': 'index out of range'}
+
+    recipe_index = resultados[idx][0]
+    df_full = getattr(recommender, 'df_full', None)
+    if df_full is None or recipe_index not in df_full.index:
+        return {'error': 'recipe not found'}
+
+    title = df_full.loc[recipe_index, 'Title']
+    ingredients_text = str(df_full.loc[recipe_index, 'Ingredients'])
+
+    # Build original list and compare availability using recommender helpers
+    try:
+        # Original display list split similar to CLI
+        import re as _re
+        original_list = [_s.strip() for _s in _re.split(r',|\n|;|•|- ', ingredients_text) if _s.strip()]
+
+        # Cleaned list for comparison
+        cleaned_needed = recommender.extract_ingredients_from_text(ingredients_text)
+        missing = set(recommender.compare_ingredients(payload.available, cleaned_needed))
+
+        detailed = []
+        for ing_original in original_list:
+            ing_clean = recommender.clean_ingredient(ing_original)
+            detailed.append({'text': ing_original, 'missing': bool(ing_clean in missing)})
+
+        return {'id': int(recipe_index), 'title': title, 'ingredients': detailed}
+    except Exception as e:
+        return {'error': str(e)}
 
 
 @app.post("/api/recommend")

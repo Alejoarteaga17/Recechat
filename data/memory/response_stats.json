@@ -348,5 +348,40 @@
     "rejected": 0,
     "more": 1,
     "last_shown": "2025-11-03T02:29:44.046547"
+  },
+  "Here are some recipes you might like:\n1. Fully Salted Roast Chicken (0.68)\n2. Avgolemono (0.42)\n3. Chopstick Ready Rice (0.39)": {
+    "shown": 1,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T10:46:43.674720"
+  },
+  "Here are some recipes you might like:\n1. Fully Salted Roast Chicken (0.67)\n2. Avgolemono (0.42)\n3. Cinnamon-Spiced Rice (0.40)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T10:59:40.519173"
+  },
+  "Here are some recipes you might like:\n1. Brazil Nut & Banana Parfait (0.48)\n2. Vegan Banana Ice Cream (0.44)\n3. Date Shake with Toasted Nuts (Majoon) (0.41)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T11:00:37.668672"
+  },
+  "Here are some recipes you might like:\n4. Whole-Wheat Oatmeal Pancakes (0.36)\n5. Baked Oatmeal (0.36)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-11-03T11:00:51.583807"
+  },
+  "Here are some recipes you might like:\n1. Watermelon Sugar Cocktail (0.12)\n2. Kiwi Ice Pop (0.11)\n3. Hard-Boiled Eggs (0.11)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T11:00:59.312802"
   }
 }
