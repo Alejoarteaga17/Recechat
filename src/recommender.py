@@ -9,8 +9,16 @@ from datetime import datetime
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
-from src import memory_manager as mm
+import memory_manager as mm
 import json
+import nltk
+from nltk.corpus import stopwords
+import faiss
+
+
+nltk.download('stopwords', quiet=True)
+STOPWORDS = set(stopwords.words('english'))
+
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
@@ -28,6 +36,7 @@ TFIDF_PATH = os.path.join(DATA_DIR, 'tfidf_model.joblib')
 VECTORIZER_PATH = os.path.join(DATA_DIR, 'tfidf_vectorizer.joblib')
 EMBED_PATH = os.path.join(DATA_DIR, 'embeddings.npy')
 COMMON_ING_PATH = os.path.join(DATA_DIR, 'common_ingredients.txt')
+FAISS_INDEX_PATH = os.path.join(DATA_DIR, 'faiss_index.index')
 
 # Load ingredient synonyms mapping (for normalization)
 SYN_PATH = os.path.join(DATA_DIR, 'synonyms.json')
@@ -120,43 +129,100 @@ print("Models ready ✅")
 interaction_count = 0
 common_ingredients = load_common_ingredients()
 
-def get_embeddings_similarity(query_text):
-    """Calculate semantic similarity using SentenceTransformer embeddings."""
-    # Re-use loaded model to get query embedding
-    query_embedding = embed_model.encode([query_text], show_progress_bar=False, convert_to_numpy=True) #type: ignore
-    # Calculate cosine similarity with all recipes
-    sims = cosine_similarity(query_embedding, embeddings).flatten()
-    return sims
 
-def recomendar_recetas(query_text, top_k=TOP_K, w_tfidf=0.6):
+def load_or_create_faiss_index(embeddings, dim):
+    """Carga o crea el índice FAISS para búsquedas rápidas."""
+    if os.path.exists(FAISS_INDEX_PATH):
+        try:
+            index = faiss.read_index(FAISS_INDEX_PATH)
+            print("✅ FAISS index loaded from cache.")
+            return index
+        except Exception as e:
+            print(f"⚠️ Error loading FAISS index: {e}, rebuilding...")
+
+    print("🔧 Building FAISS index (cosine-normalized)...")
+    # Normalizamos los embeddings para usar producto interno como coseno
+    faiss.normalize_L2(embeddings)
+    index = faiss.IndexFlatIP(dim)
+    index.add(embeddings) # type: ignore
+    faiss.write_index(index, FAISS_INDEX_PATH)
+    print("✅ FAISS index created and saved.")
+    return index
+
+
+# Crear o cargar índice FAISS al iniciar
+faiss_index = load_or_create_faiss_index(embeddings, embeddings.shape[1])
+
+
+def get_embeddings_similarity(query_text, top_k=TOP_K):
+    """Calculate semantic similarity using FAISS (fallback to cosine if needed)."""
+    try:
+        query_embedding = embed_model.encode([query_text], show_progress_bar=False, convert_to_numpy=True)
+        faiss.normalize_L2(query_embedding)
+        D, I = faiss_index.search(query_embedding, top_k) # type: ignore
+        sims = np.zeros(len(embeddings))
+        sims[I[0]] = D[0]
+        return sims
+    except Exception as e:
+        print(f"⚠️ FAISS search failed, fallback to cosine: {e}")
+        query_embedding = embed_model.encode([query_text], show_progress_bar=False, convert_to_numpy=True)
+        sims = cosine_similarity(query_embedding, embeddings).flatten()
+        return sims
+
+
+def calcular_peso_adaptativo(query_text):
+    """Determina el peso TF-IDF según tipo y complejidad del texto."""
+    text = query_text.lower().strip()
+    tokens = re.findall(r'\w+', text)
+    n_tokens = len(tokens)
+    
+    # Heurística por separadores: lista corta = más TF-IDF
+    if re.search(r'[,\n;]', text):
+        base_weight = 0.75  # más TF-IDF
+    else:
+        base_weight = 0.5   # neutro
+
+    # Ajuste por longitud
+    if n_tokens <= 4:
+        base_weight += 0.15  # corto → TF-IDF más peso
+    elif n_tokens >= 10:
+        base_weight -= 0.15  # largo → Embeddings más peso
+
+    # Ajuste por diversidad léxica
+    unique_tokens = len(set(tokens))
+    if unique_tokens / (n_tokens + 1e-5) > 0.8:
+        base_weight -= 0.05  # mucha diversidad → embeddings
+
+    # Asegurar rango válido
+    return float(np.clip(base_weight, 0.2, 0.8))
+
+def recomendar_recetas(query_text, top_k=TOP_K, w_tfidf=None):
     """
     Recommend recipes using both TF-IDF and semantic embeddings.
-    
-    Args:
-        query_text: User input text
-        top_k: Number of recommendations to return
-        w_tfidf: Weight for TF-IDF score (1-w_tfidf will be embedding weight)
+    The TF-IDF weight is adaptive if not provided.
     """
-    # Normalize query with synonyms mapping before vectorizing
     norm_query = normalize_query(query_text)
 
-    # Get TF-IDF similarity
+    if w_tfidf is None:
+        w_tfidf = calcular_peso_adaptativo(norm_query)
+
     q_vec = tfidf_vectorizer.transform([norm_query])
     sims_tfidf = cosine_similarity(q_vec, tfidf_matrix).flatten()
-    
-    # Get embedding similarity
     sims_emb = get_embeddings_similarity(norm_query)
-    
-    # Combine scores with weighted average
+
     sims = w_tfidf * sims_tfidf + (1 - w_tfidf) * sims_emb
-    
-    # Get top-k recipes
+
     idx_top = np.argsort(-sims)[:top_k]
-    return [(i, titles[i], float(sims[i])) for i in idx_top]
+    return [(i, titles[i], float(sims[i]), w_tfidf) for i in idx_top]
 
 def format_recipes_for_display(resultados, offset=0, limit=3):
     formatted = []
-    for pos, (_, title, score) in enumerate(resultados[offset:offset+limit], start=offset+1):
+    for pos, item in enumerate(resultados[offset:offset+limit], start=offset+1):
+        # Handle both 3-tuple and 4-tuple formats (with optional w_tfidf)
+        if len(item) == 4:
+            _, title, score, _ = item
+        else:
+            _, title, score = item
         formatted.append(f"{pos}. {title} ({score:.2f})")
     return formatted
 
@@ -296,9 +362,9 @@ def mostrar_detalles_receta(idx, resultados, available_ingredients=""):
             for ing_original in ingredientes_list:
                 ing_clean = clean_ingredient(ing_original)
                 if ing_clean in missing:
-                    print(f"• {ing_original} ❌")  # Ingrediente faltante
+                    print(f"• {ing_original}")  # Ingrediente faltante
                 else:
-                    print(f"• {ing_original} ✅")  # Ingrediente disponible
+                    print(f"• {ing_original}")  # Ingrediente disponible
         else:
             # Si no hay lista de ingredientes disponibles, mostrar normal
             ingredientes_list = re.split(r',|\n|;|•|- ', ingredients) #type: ignore
@@ -307,8 +373,8 @@ def mostrar_detalles_receta(idx, resultados, available_ingredients=""):
 
         opcion = input(
             "\nWhat would you like to do?\n"
-            "1️⃣ See instructions\n"
-            "2️⃣ Back to recipe list\n"
+            " 1️⃣ See instructions\n"
+            " 2️⃣ Back to recipe list\n"
             "👉 Choice: "
         ).strip()
 

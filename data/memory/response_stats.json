@@ -411,5 +411,33 @@
     "rejected": 0,
     "more": 1,
     "last_shown": "2025-11-03T15:18:53.201938"
+  },
+  "Here are some recipes you might like:\n1. Fully Salted Roast Chicken (0.55)\n2. Avgolemono (0.34)\n3. Chopstick Ready Rice (0.31)": {
+    "shown": 1,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T16:54:46.186855"
+  },
+  "Here are some recipes you might like:\n1. Soy-Glazed Chicken with Broccoli (0.36)\n2. Spicy Wok Shrimp with Coconut Rice (0.36)\n3. Stir-Fried Egg and Tomato (0.36)": {
+    "shown": 2,
+    "accepted": 1,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T16:56:44.226540"
+  },
+  "Here are some recipes you might like:\n1. Fully Salted Roast Chicken (0.42)\n2. Arroz Caldo (Chicken Rice Porridge) (0.27)\n3. Fontina Risotto Cakes with Fresh Chives (0.26)": {
+    "shown": 1,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 0,
+    "last_shown": "2025-11-03T17:23:34.379083"
+  },
+  "Here are some recipes you might like:\n4. Chicken & Broccoli with Crispy Noodles (0.25)\n5. Crystal Shrimp (0.25)\n6. Lobster Cantonese (0.25)\nDo you want more?": {
+    "shown": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "more": 1,
+    "last_shown": "2025-11-03T17:23:44.371348"
   }
 }

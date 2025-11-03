@@ -9,3 +9,4 @@ sentence-transformers>=2.2.2
 fastapi>=0.70.0
 uvicorn>=0.15.0
 tqdm
+faiss-cpu
