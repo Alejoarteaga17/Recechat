@@ -66,7 +66,7 @@ if os.path.exists(candidate_full_1):
 elif os.path.exists(candidate_full_2):
     FULL_CSV = candidate_full_2
 else:
-    FULL_CSV = 'Food Ingredients and Recipe Dataset.csv'  # fallback to cwd lookup
+    FULL_CSV = 'src/Food Ingredients and Recipe Dataset.csv'  # fallback to cwd lookup
 
 df_full = pd.read_csv(FULL_CSV)
 
@@ -309,6 +309,63 @@ def clean_ingredient(text):
     
     return text.strip()
 
+
+def _normalize_action_token(tok: str) -> str:
+    """Normalize a single token for matching user intents."""
+    tok = tok.strip().lower()
+    mapping = {
+        'y': 'yes', 'yes': 'yes', 'si': 'yes', 's': 'yes',
+        'n': 'no', 'no': 'no',
+        'more': 'more', 'm': 'more',
+        'exit': 'exit', 'quit': 'exit', 'q': 'exit',
+        'see': '1', 'see instructions': '1', 'instructions': '1', '1': '1', 'one': '1',
+        'back': '2', 'back to recipe list': '2', '2': '2', 'two': '2'
+    }
+    return mapping.get(tok, tok)
+
+
+def interpret_main_input(text: str, max_index: int = 0):
+    """Interpret a user input at the main prompt.
+
+    Returns a tuple (action, index) where action is one of:
+      - 'yes' (user liked a recipe and will specify which)
+      - 'no' (user rejected)
+      - 'more' (ask for more results)
+      - 'exit' (quit)
+      - 'select' (user selected a recipe by number) -> index is 0-based
+      - None (unrecognized)
+    """
+    if not text:
+        return None, None
+    t = text.strip().lower()
+
+    # direct numeric selection (e.g., user types '1' to pick recipe 1)
+    if re.fullmatch(r"\d+", t):
+        idx = int(t) - 1
+        if 0 <= idx < max_index:
+            return 'select', idx
+        else:
+            return None, None
+
+    # try simple tokens and common phrases
+    tokens = [_normalize_action_token(t.strip()) for t in re.split(r"\s+|,|\\.|\\?|!|\\(|\\)", t) if t.strip()]
+    # prefer explicit mapped tokens
+    for tok in tokens:
+        if tok in ('yes', 'no', 'more', 'exit'):
+            return tok, None
+
+    # final fuzzy checks
+    if 'more' in t:
+        return 'more', None
+    if t in ('y', 'yes', 'si', 's'):
+        return 'yes', None
+    if t in ('n', 'no'):
+        return 'no', None
+    if t in ('exit', 'quit', 'q'):
+        return 'exit', None
+
+    return None, None
+
 def extract_ingredients_from_text(text):
     """Convert ingredient text to a clean list of ingredients."""
     ingredients_list = re.split(r',|\n|;|•|- ', text)
@@ -372,12 +429,15 @@ def mostrar_detalles_receta(idx, resultados, available_ingredients=""):
             ingredientes_list = [ing.strip() for ing in ingredientes_list if ing.strip()]
             print("\n".join(f"• {ing}" for ing in ingredientes_list))
 
-        opcion = input(
+        opcion_raw = input(
             "\nWhat would you like to do?\n"
             " 1️⃣ See instructions\n"
             " 2️⃣ Back to recipe list\n"
-            "👉 Choice: "
+            " 👉 Choice: "
         ).strip()
+
+        # Normalize numeric and textual choices (allow typing "see", "instructions", "1", etc.)
+        opcion = _normalize_action_token(opcion_raw)
 
         if opcion == "1":
             print("\n👨‍🍳 Instructions:\n")
@@ -412,38 +472,45 @@ def interactuar_con_usuario(query_text):
     print("\n" + respuesta)
 
     while True:
-        opcion = input("\nDid you like any recipe? (yes/no/more/exit): ").strip().lower()
+        opcion_raw = input("\nDid you like any recipe? (yes/no/more/exit) — you can also type a number to select: ").strip()
+        action, sel_idx = interpret_main_input(opcion_raw, max_index=len(resultados))
 
-        if opcion in ("yes", "y"):
-            idx = input("Which number did you like?: ").strip()
-            if not idx.isdigit():
+        if action == 'select' and sel_idx is not None:
+            # user typed a number directly to select a recipe
+            mostrar_detalles_receta(sel_idx, resultados, available_ingredients)
+            mm.register_interaction(query_text, respuesta, "accepted")
+            break
+
+        if action == 'yes':
+            # prompt for number if not provided
+            idx_raw = input("Which number did you like?: ").strip()
+            if not re.fullmatch(r"\d+", idx_raw):
                 print("Please enter a valid number.")
                 continue
-            idx = int(idx) - 1
+            idx = int(idx_raw) - 1
             if idx < 0 or idx >= len(resultados):
                 print("That number is not in the list.")
                 continue
-            #  Mostrar ingredientes e instrucciones interactivo
             mostrar_detalles_receta(idx, resultados, available_ingredients)
             mm.register_interaction(query_text, respuesta, "accepted")
             break
 
-        elif opcion in ("no", "n"):
+        if action == 'no':
             print("I'll keep improving!")
             mm.register_interaction(query_text, respuesta, "rejected")
             break
 
-        elif opcion == "more":
+        if action == 'more':
             more_response, offset = mostrar_mas_recetas(resultados, offset, more_count)
             more_count += 1
             print("\n" + more_response)
+            continue
 
-        elif opcion == "exit":
+        if action == 'exit':
             print("Goodbye 👋")
             return
 
-        else:
-            print("Options: yes / no / more / exit")
+        print("Options: yes / no / more / exit — or type a number to select a recipe")
 
     # ✅ Evaluación automática cada 30 interacciones
     if interaction_count % 30 == 0:

@@ -5,42 +5,125 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Recechat</title>
         <style>
-        :root{--bg:#f7f8fb;--card:#fff;--muted:#6b7280;--accent:#2563eb}
-        body { font-family: Inter, system-ui, -apple-system, Roboto, 'Helvetica Neue', Arial; background:var(--bg); margin:0; padding:24px; }
-        .app { max-width: 1000px; margin: 0 auto; }
-        header { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
-        h1 { font-size:22px; margin:0; }
-        .controls { display:flex; gap:8px; align-items:center; margin-bottom:16px; }
-        input[type=text], input[type=number] { padding:8px 10px; border-radius:8px; border:1px solid #e6e9ef; }
-        button { background:var(--accent); color:#fff; padding:8px 12px; border:none; border-radius:8px; cursor:pointer; }
-        .results { margin-top:12px; }
-        .card { background:var(--card); border-radius:10px; padding:14px; margin-bottom:12px; box-shadow:0 8px 22px rgba(16,24,40,0.06); }
-        .title { font-weight:700; font-size:16px; color:#0f1724; }
-        .meta { color:var(--muted); font-size:13px; margin-top:6px; }
-        .ingredients { margin-top:8px; color:#374151; font-size:14px; }
-        details summary { cursor:pointer; font-weight:600; margin-top:8px; }
-        details div { margin-top:8px; color:#374151; }
-        .feedback { margin-top:10px; display:flex; gap:8px; }
-        .feedback button { background:#fff; color:#111; border:1px solid #e6e6e6; padding:6px 10px; }
-        .small { font-size:13px; color:var(--muted); }
+    :root{--bg:#f7f8fb;--card:#fff;--muted:#6b7280;--accent:#5d88f0}
 
-            /* Chat bubbles */
-        .message { margin:8px 0; display:flex; align-items:flex-end; gap:8px; }
-        .message.assistant { justify-content:flex-start; }
-        .message.user { justify-content:flex-end; }
-        .bubble { max-width:82%; padding:10px 14px; border-radius:12px; }
-        .user-bubble { background:#f1f5f9; color:#0f1724; border-radius:12px; }
-        .assistant-bubble { background:#86a7ef; color:#072; border-radius:12px; }
-        .avatar { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:14px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
-        .user .avatar { background:#94a3b8; }
-        .assistant .avatar { background:#22c55e; }
-        .msg-content { display:flex; flex-direction:column; gap:4px; }
-        .timestamp { color:var(--muted); font-size:12px; }
-        .message.user .timestamp { text-align:left; }
-        .message.assistant .timestamp { text-align:right; }
+    body { font-family: Inter, system-ui, -apple-system, Roboto, 'Helvetica Neue', Arial; background:var(--bg); margin:0; padding:24px; }
+    .app { max-width: 1000px; margin: 0 auto; }
+    header { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+    h1 { font-size:22px; margin:0; }
 
-        @media (max-width:700px){ .controls{flex-direction:column; align-items:stretch;} }
-        </style>
+    .controls { display:flex; gap:8px; align-items:center; margin-bottom:16px; }
+    input[type=text], input[type=number] { padding:8px 10px; border-radius:8px; border:1px solid #e6e9ef; }
+
+    /* ✅ Botones globales ahora claritos */
+button {
+    background:#eef2ff;
+    color:#3b4fc4;
+    border:2px solid var(--accent);
+    padding:10px 18px;
+    border-radius:18px;
+    cursor:pointer;
+    font-weight:600;
+    font-size:14px;
+    transition:0.2s;
+    box-shadow:0 3px 8px rgba(93,136,240,0.18);
+}
+button:hover {
+    background:#dce3ff;
+    transform:translateY(-2px);
+}
+button:active {
+    transform:scale(0.96);
+}
+
+    /* 🔹 Botones secundarios (No, Back...) */
+    button.btn-secondary {
+        background:#d1d5db;
+        color:#111;
+        box-shadow:0 3px 6px rgba(0,0,0,0.12);
+    }
+    button.btn-secondary:hover { background:#c2c5c9; }
+
+    /* 🔹 Botones numéricos de selección */
+    button.btn-pick {
+        background:#eef2ff;
+        color:#3b4fc4;
+        border:2px solid #5d88f0;
+    }
+    button.btn-pick:hover {
+        background:#dce3ff;
+    }
+
+    /* 🔹 Botones dentro de burbujas */
+    .message.assistant button {
+        font-size:13px;
+        padding:8px 14px;
+        border-radius:14px;
+    }
+
+    /* ❓Botones de feedback */
+    .like-btn, .dislike-btn {
+        background:#fff !important;
+        color:#444;
+        border:1px solid #c6c6c6;
+        box-shadow:none;
+    }
+    .like-btn:hover { background:#d9f7db !important; border-color:#4ade80; }
+    .dislike-btn:hover { background:#ffe0e0 !important; border-color:#f43f5e; }
+
+    /* 🔄 More button */
+    .more-btn {
+        background:#eef2ff;
+        color:#3b4fc4;
+    }
+    .more-btn:hover {
+        background:#dce3ff;
+    }
+
+    .results { margin-top:12px; }
+    .card { background:var(--card); border-radius:10px; padding:14px; margin-bottom:12px; box-shadow:0 8px 22px rgba(16,24,40,0.06); }
+
+    .title { font-weight:700; font-size:16px; color:#0f1724;}
+    .meta { color:var(--muted); font-size:13px; margin-top:6px;}
+    .ingredients { margin-top:8px; color:#374151; font-size:14px; }
+    details summary { cursor:pointer; font-weight:600; margin-top:8px; }
+    details div { margin-top:8px; color:#374151; }
+
+    .feedback { margin-top:10px; display:flex; gap:8px; }
+    .feedback button { padding:6px 10px; }
+
+    .small { font-size:13px; color:var(--muted); }
+
+    /* 💬 Chat bubbles */
+    .message { margin:8px 0; display:flex; align-items:flex-end; gap:8px; }
+    .message.assistant { justify-content:flex-start; }
+    .message.user { justify-content:flex-end; }
+    
+    .bubble { max-width:82%; padding:10px 14px; border-radius:12px; }
+
+    .user-bubble { 
+        background:#e8edf7; 
+        padding:12px 16px; 
+        border-radius:18px 18px 0 18px; 
+    }
+    .assistant-bubble { 
+        background:#5d88f0; 
+        padding:12px 16px; 
+        border-radius:18px 18px 18px 0; 
+        color:#fff;
+        line-height:1.4; 
+    }
+
+    .avatar { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:14px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+    .user .avatar { background:#94a3b8; }
+    .assistant .avatar { background:#5d88f0; }
+
+    .msg-content { display:flex; flex-direction:column; gap:4px; }
+    .timestamp { color:var(--muted); font-size:12px; }
+    .message.user .timestamp { text-align:left; }
+    .message.assistant .timestamp { text-align:right; }
+</style>
+
     </head>
     <body>
         <div class="app">
@@ -65,6 +148,14 @@
             // small state for chat
             let currentSessionId = null;
             let lastQuery = '';
+            // Action prompt state: when assistant asks "Did you like any recipe?"
+            let expectingAction = false;
+            let actionOffset = 0;
+            let actionTotal = 0;
+            let actionSessionId = null;
+            // Detail prompt state: when assistant shows options after selecting a recipe (1 see / 2 back)
+            let expectingDetailAction = false;
+            let detailSelectedIdx = null;
 
                         function escapeHtml(unsafe) {
             if(!unsafe) return '';
@@ -80,6 +171,39 @@
             document.getElementById('send').addEventListener('click', sendChatMessage);
             document.getElementById('chat-input').addEventListener('keydown', (e)=>{ if(e.key==='Enter') sendChatMessage(); });
 
+            function normalizeActionToken(tok){
+                if(!tok) return tok;
+                tok = String(tok).trim().toLowerCase();
+                const map = {
+                    'y':'yes','yes':'yes','si':'yes','s':'yes',
+                    'n':'no','no':'no',
+                    'm':'more','more':'more',
+                    'q':'exit','quit':'exit','exit':'exit',
+                    'see':'1','instructions':'1','1':'1',
+                    'back':'2','2':'2'
+                };
+                return map[tok] || tok;
+            }
+
+            function interpretUserInput(text){
+                if(!text) return {action:null, index:null};
+                const t = String(text).trim().toLowerCase();
+                // pure number => selection
+                if(/^\d+$/.test(t)) return {action:'select', index: parseInt(t,10)-1};
+                const parts = t.split(/\s+|,|\.|!|\?|\(|\)/).map(p=>normalizeActionToken(p)).filter(Boolean);
+                for(const p of parts){
+                    if(['yes','no','more','exit'].includes(p)) return {action:p, index:null};
+                    if(p==='1') return {action:'detail1', index:null};
+                    if(p==='2') return {action:'detail2', index:null};
+                }
+                // fuzzy contains
+                if(t.includes('more')) return {action:'more', index:null};
+                if(['yes','y','si'].includes(t)) return {action:'yes', index:null};
+                if(['no','n'].includes(t)) return {action:'no', index:null};
+                if(['exit','quit','q'].includes(t)) return {action:'exit', index:null};
+                return {action:null, index:null};
+            }
+
             async function sendChatMessage(){
                 const inp = document.getElementById('chat-input');
                 const text = inp.value.trim();
@@ -88,6 +212,205 @@
                 appendUserMessage(text);
                 lastQuery = text;
                 scrollChatToBottom();
+
+                // If assistant currently expects an action (yes/no/more/exit/number), interpret typed text
+                if(expectingDetailAction){
+                    // Prefer explicit numeric 1/2 for detail actions (show instructions / back)
+                    const ttrim = String(text).trim();
+                    if(/^\s*1\s*$/.test(ttrim) || /see|instruction|instructions/i.test(ttrim)){
+                        const idx = (Number.isInteger(parseInt(ttrim)) ? detailSelectedIdx : detailSelectedIdx);
+                        expectingDetailAction = false;
+                        detailSelectedIdx = null;
+                        try{
+                            const r = await fetch('/api/chat/select', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({session_id: currentSessionId, index: idx})});
+                            const d = await r.json();
+                            if(d.error){ appendAssistantMessage('Error: '+d.error); }
+                            else{
+                                const steps = String(d.instructions||'').split(/\n+|\r+|\.(?=\s|$)/).map(s=>s.trim()).filter(Boolean);
+                                let itxt = '👨‍🍳 Instructions:\n\n';
+                                steps.forEach((s,i)=>{ itxt += `${i+1}. ${s}\n`; });
+                                appendAssistantMessage(itxt);
+                            }
+                        }catch(err){ appendAssistantMessage('Error: '+err); }
+                        scrollChatToBottom();
+                        return;
+                    }
+
+                    if(/^\s*2\s*$/.test(ttrim) || /back/i.test(ttrim)){
+                        // back to recipe list
+                        expectingDetailAction = false;
+                        const off = actionOffset || 0; const tot = actionTotal || 0;
+                        showActionPrompt(off, tot);
+                        scrollChatToBottom();
+                        return;
+                    }
+                    // not recognized -> fallthrough and treat as normal chat start
+                }
+
+                if(expectingAction){
+                    const parsed = interpretUserInput(text);
+                    // selection by number relative to current page
+                    if(parsed.action === 'select' && parsed.index!=null){
+                        const globalIdx = actionOffset + parsed.index;
+                        expectingAction = false;
+                        try{
+                            const resp = await fetch('/api/chat/recipe_ingredients', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({session_id: actionSessionId, index: globalIdx, available: lastQuery})});
+                            const data = await resp.json();
+                            if(data.error){ appendAssistantMessage('Error: '+data.error); }
+                            else{
+                                let txt = `\n══════════════════════════════\n`;
+                                txt += `🍽️ Recipe: ${data.title}\n`;
+                                txt += `══════════════════════════════\n\n`;
+                                txt += `Ingredients:\n\n`;
+                                for(const ing of data.ingredients){ txt += `• ${ing.text}\n`; }
+                                appendAssistantMessage(txt);
+
+                                // show detail options (1 see / 2 back)
+                                const w2 = document.createElement('div');
+                                w2.className = 'message assistant';
+                                const b2 = document.createElement('div');
+                                b2.className = 'bubble assistant-bubble';
+                                b2.innerHTML = `\n                                            <div>What would you like to do?</div>\n                                            <div style="margin-top:8px; display:flex; gap:8px;">\n                                                <button class="btn-see-inst">1️ See instructions</button>\n                                                <button class="btn-back-list">2️ Back to recipe list</button>\n                                            </div>\n                                        `;
+                                w2.appendChild(b2);
+                                const chat = document.getElementById('chat'); chat.appendChild(w2);
+
+                                // set detail expectation so typed '1'/'2' work
+                                expectingDetailAction = true;
+                                detailSelectedIdx = globalIdx;
+
+                                b2.querySelector('.btn-see-inst').addEventListener('click', async ()=>{
+                                    appendUserMessage('1');
+                                    expectingDetailAction = false;
+                                    try{
+                                        const r = await fetch('/api/chat/select', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({session_id: currentSessionId, index: globalIdx})});
+                                        const d = await r.json();
+                                        if(d.error){ appendAssistantMessage('Error: '+d.error); }
+                                        else{
+                                            const steps = String(d.instructions||'').split(/\n+|\r+|\.(?=\s|$)/).map(s=>s.trim()).filter(Boolean);
+                                            let itxt = '👨‍🍳 Instructions:\n\n';
+                                            steps.forEach((s,i)=>{ itxt += `${i+1}. ${s}\n`; });
+                                            appendAssistantMessage(itxt);
+                                        }
+                                        scrollChatToBottom();
+                                    }catch(err){ appendAssistantMessage('Error: '+err); }
+                                });
+
+                                b2.querySelector('.btn-back-list').addEventListener('click', ()=>{
+                                    appendUserMessage('2');
+                                    expectingDetailAction = false;
+                                    showActionPrompt(actionOffset, actionTotal);
+                                    scrollChatToBottom();
+                                });
+                            }
+                        }catch(err){ appendAssistantMessage('Error: '+err); }
+                        scrollChatToBottom();
+                        return;
+                    }
+
+                    if(parsed.action === 'yes'){
+                        // emulate clicking Yes button: ask which number
+                        expectingAction = false;
+                        // create pick UI exactly like the Yes button handler
+                        const count = Math.min(3, Math.max(0, actionTotal - actionOffset));
+                        const b = document.createElement('div');
+                        b.className = 'bubble assistant-bubble';
+                        let html = '<div>Which number did you like?</div><div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">';
+                        for(let i=1;i<=count;i++){ html += `<button class="btn-pick" data-index="${actionOffset + (i-1)}">${i}</button>`; }
+                        html += '</div>';
+                        b.innerHTML = html;
+                        appendAssistantNode(b);
+                        b.querySelectorAll('.btn-pick').forEach(btn=>{
+                            btn.addEventListener('click', async ()=>{
+                                const globalIdx = parseInt(btn.getAttribute('data-index'));
+                                appendUserMessage(String(globalIdx+1));
+                                expectingAction = false;
+                                try{
+                                    const resp = await fetch('/api/chat/recipe_ingredients', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({session_id: actionSessionId, index: globalIdx, available: lastQuery})});
+                                    const data = await resp.json();
+                                    if(data.error){ appendAssistantMessage('Error: '+data.error); }
+                                    else{
+                                        let txt = `\n══════════════════════════════\n`;
+                                        txt += `🍽️ Recipe: ${data.title}\n`;
+                                        txt += `══════════════════════════════\n\n`;
+                                        txt += `Ingredients:\n\n`;
+                                        for(const ing of data.ingredients){ txt += `• ${ing.text}\n`; }
+                                        appendAssistantMessage(txt);
+
+                                        // detail options
+                                        const w2 = document.createElement('div');
+                                        w2.className = 'message assistant';
+                                        const b2 = document.createElement('div');
+                                        b2.className = 'bubble assistant-bubble';
+                                        b2.innerHTML = `\n                                                <div>What would you like to do?</div>\n                                                <div style="margin-top:8px; display:flex; gap:8px;">\n                                                    <button class="btn-see-inst">1️ See instructions</button>\n                                                    <button class="btn-back-list">2️ Back to recipe list</button>\n                                                </div>\n                                            `;
+                                        w2.appendChild(b2); chat.appendChild(w2);
+
+                                        expectingDetailAction = true;
+                                        detailSelectedIdx = globalIdx;
+
+                                        b2.querySelector('.btn-see-inst').addEventListener('click', async ()=>{
+                                            appendUserMessage('1');
+                                            expectingDetailAction = false;
+                                            try{
+                                                const r = await fetch('/api/chat/select', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({session_id: currentSessionId, index: globalIdx})});
+                                                const d = await r.json();
+                                                if(d.error){ appendAssistantMessage('Error: '+d.error); }
+                                                else{
+                                                    const steps = String(d.instructions||'').split(/\n+|\r+|\.(?=\s|$)/).map(s=>s.trim()).filter(Boolean);
+                                                    let itxt = '👨‍🍳 Instructions:\n\n';
+                                                    steps.forEach((s,i)=>{ itxt += `${i+1}. ${s}\n`; });
+                                                    appendAssistantMessage(itxt);
+                                                }
+                                            }catch(err){ appendAssistantMessage('Error: '+err); }
+                                        });
+
+                                        b2.querySelector('.btn-back-list').addEventListener('click', ()=>{
+                                            appendUserMessage('2');
+                                            expectingDetailAction = false;
+                                            showActionPrompt(actionOffset, actionTotal);
+                                            scrollChatToBottom();
+                                        });
+                                    }
+                                }catch(err){ appendAssistantMessage('Error: '+err); }
+                                scrollChatToBottom();
+                            });
+                        });
+                        scrollChatToBottom();
+                        return;
+                    }
+
+                    if(parsed.action === 'no'){
+                        appendAssistantMessage("I'll keep improving!");
+                        expectingAction = false;
+                        scrollChatToBottom();
+                        return;
+                    }
+
+                    if(parsed.action === 'more'){
+                        // forward to /api/chat/more
+                        expectingAction = false;
+                        try{
+                            const resp = await fetch('/api/chat/more', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({session_id: actionSessionId})});
+                            const data = await resp.json();
+                            if(data.error){ appendAssistantMessage('Error: '+data.error); }
+                            else{
+                                if(data.text) appendAssistantMessage(data.text);
+                                // show prompt again referencing new offset
+                                showActionPrompt(data.offset, actionTotal);
+                            }
+                        }catch(err){ appendAssistantMessage('Error: '+err); }
+                        scrollChatToBottom();
+                        return;
+                    }
+
+                    if(parsed.action === 'exit'){
+                        appendAssistantMessage('Goodbye 👋');
+                        expectingAction = false;
+                        currentSessionId = null;
+                        scrollChatToBottom();
+                        return;
+                    }
+                    // otherwise fallthrough to normal chat start
+                }
 
                 // call chat start
                 try{
@@ -187,13 +510,51 @@
                             const idx = parseInt(btn.getAttribute('data-idx'));
                             appendUserMessage('Mostrar detalles receta #' + (idx+1));
                 scrollChatToBottom();
-                const resp = await fetch('/api/chat/select', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({session_id:sid, index:idx})});
-                const data = await resp.json();
-                if(data.error){ appendAssistantMessage('Error: '+data.error); }
-                else{
-                    const txt = `Ingredientes:\n${data.ingredients}\n\nInstrucciones:\n${data.instructions || ''}`;
-                    appendAssistantMessage(txt);
-                }
+                        const resp = await fetch('/api/chat/select', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({session_id:sid, index:idx})});
+                        const data = await resp.json();
+                        if(data.error){ appendAssistantMessage('Error: '+data.error); }
+                        else{
+                            const txt = `Ingredientes:\n${data.ingredients || ''}\n`;
+                            appendAssistantMessage(txt);
+
+                            // After showing ingredients, present detail options (1 see / 2 back) and allow typed 1/2
+                            const chat = document.getElementById('chat');
+                                const b2 = document.createElement('div');
+                                b2.className = 'bubble assistant-bubble';
+                                b2.innerHTML = `
+                                    <div>What would you like to do?</div>
+                                    <div style="margin-top:8px; display:flex; gap:8px;">
+                                        <button class="btn-see-inst">1️ See instructions</button>
+                                        <button class="btn-back-list">2️ Back to recipe list</button>
+                                    </div>
+                                `;
+                                appendAssistantNode(b2);
+
+                            expectingDetailAction = true;
+                            detailSelectedIdx = idx;
+
+                            b2.querySelector('.btn-see-inst').addEventListener('click', async ()=>{
+                                appendUserMessage('1');
+                                expectingDetailAction = false;
+                                const r = await fetch('/api/chat/select', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({session_id: sid, index: idx})});
+                                const d = await r.json();
+                                if(d.error){ appendAssistantMessage('Error: '+d.error); }
+                                else{
+                                    const steps = String(d.instructions||'').split(/\n+|\r+|\.(?=\s|$)/).map(s=>s.trim()).filter(Boolean);
+                                    let itxt = '👨‍🍳 Instructions:\n\n';
+                                    steps.forEach((s,i)=>{ itxt += `${i+1}. ${s}\n`; });
+                                    appendAssistantMessage(itxt);
+                                }
+                                scrollChatToBottom();
+                            });
+
+                            b2.querySelector('.btn-back-list').addEventListener('click', ()=>{
+                                appendUserMessage('2');
+                                expectingDetailAction = false;
+                                showActionPrompt(actionOffset, actionTotal);
+                                scrollChatToBottom();
+                            });
+                        }
                 scrollChatToBottom();
                 });
             });
@@ -235,9 +596,14 @@
             }
 
                 function showActionPrompt(currentOffset, totalCount){
-                    const chat = document.getElementById('chat');
-                            const box = document.createElement('div');
-                            box.className = 'bubble assistant-bubble';
+                    // mark that assistant expects an action from the user (yes/no/more/exit or a number)
+                    expectingAction = true;
+                    actionOffset = currentOffset || 0;
+                    actionTotal = totalCount || 0;
+                    actionSessionId = currentSessionId;
+
+                    const box = document.createElement('div');
+                    box.className = 'bubble assistant-bubble';
                     box.innerHTML = `
                         <div>Did you like any recipe? (yes/no/more/exit)</div>
                         <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
@@ -247,25 +613,84 @@
                             <button class="btn-exit">Exit</button>
                         </div>
                     `;
-                            appendAssistantNode(box);
+                    appendAssistantNode(box);
 
                     // wire buttons
                     box.querySelector('.btn-yes').addEventListener('click', ()=>{
+                        // user used a button; no longer require typed action
+                        expectingAction = false;
                         appendUserMessage('yes');
                         // ask which number (1..3) for current page
                         const count = Math.min(3, Math.max(0, totalCount - currentOffset));
-                        const w = document.createElement('div');
-                        w.className = 'message assistant';
-                        const b = document.createElement('div');
-                        b.className = 'bubble assistant-bubble';
-                        let html = '<div>Which number did you like?</div><div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">';
-                        for(let i=1;i<=count;i++){
-                            html += `<button class="btn-pick" data-index="${currentOffset + (i-1)}">${i}</button>`;
-                        }
-                        html += '</div>';
-                        b.innerHTML = html;
-                        w.appendChild(b);
-                        chat.appendChild(w);
+                        const b2 = document.createElement('div');
+                        b2.className = 'bubble assistant-bubble';
+                        b2.innerHTML = `
+                            <div>Which number did you like?</div>
+                            <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
+                                ${Array.from({length: count}, (_, i) => `<button class='btn-pick' data-index='${currentOffset + i}'>${i+1}</button>`).join('')}
+                            </div>
+                        `;
+                        appendAssistantNode(b2);
+                        b2.querySelectorAll('.btn-pick').forEach(btn=>{
+                            btn.addEventListener('click', async ()=>{
+                                const globalIdx = parseInt(btn.getAttribute('data-index'));
+                                appendUserMessage(String(globalIdx+1));
+                                expectingAction = false;
+                                try{
+                                    const resp = await fetch('/api/chat/recipe_ingredients', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({session_id: currentSessionId, index: globalIdx, available: lastQuery})});
+                                    const data = await resp.json();
+                                    if(data.error){ appendAssistantMessage('Error: '+data.error); }
+                                    else{
+                                        let txt = `\n══════════════════════════════\n`;
+                                        txt += `🍽️ Recipe: ${data.title}\n`;
+                                        txt += `══════════════════════════════\n\n`;
+                                        txt += `Ingredients:\n\n`;
+                                        for(const ing of data.ingredients){ txt += `• ${ing.text}\n`; }
+                                        appendAssistantMessage(txt);
+
+                                        // detail options
+                                        const b3 = document.createElement('div');
+                                        b3.className = 'bubble assistant-bubble';
+                                        b3.innerHTML = `
+                                            <div>What would you like to do?</div>
+                                            <div style=\"margin-top:8px; display:flex; gap:8px;\">
+                                                <button class=\"btn-see-inst\">1️ See instructions</button>
+                                                <button class=\"btn-back-list\">2️ Back to recipe list</button>
+                                            </div>
+                                        `;
+                                        appendAssistantNode(b3);
+
+                                        expectingDetailAction = true;
+                                        detailSelectedIdx = globalIdx;
+
+                                        b3.querySelector('.btn-see-inst').addEventListener('click', async ()=>{
+                                            appendUserMessage('1');
+                                            expectingDetailAction = false;
+                                            try{
+                                                const r = await fetch('/api/chat/select', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({session_id: currentSessionId, index: globalIdx})});
+                                                const d = await r.json();
+                                                if(d.error){ appendAssistantMessage('Error: '+d.error); }
+                                                else{
+                                                    const steps = String(d.instructions||'').split(/\n+|\r+|\.(?=\s|$)/).map(s=>s.trim()).filter(Boolean);
+                                                    let itxt = '👨‍🍳 Instructions:\n\n';
+                                                    steps.forEach((s,i)=>{ itxt += `${i+1}. ${s}\n`; });
+                                                    appendAssistantMessage(itxt);
+                                                }
+                                            }catch(err){ appendAssistantMessage('Error: '+err); }
+                                        });
+
+                                        b3.querySelector('.btn-back-list').addEventListener('click', ()=>{
+                                            appendUserMessage('2');
+                                            expectingDetailAction = false;
+                                            showActionPrompt(currentOffset, totalCount);
+                                            scrollChatToBottom();
+                                        });
+                                    }
+                                }catch(err){ appendAssistantMessage('Error: '+err); }
+                                scrollChatToBottom();
+                            });
+                        });
+                        scrollChatToBottom();
                         // attach pick handlers
                         b.querySelectorAll('.btn-pick').forEach(btn=>{
                             btn.addEventListener('click', async ()=>{
@@ -331,12 +756,14 @@
                     });
 
                     box.querySelector('.btn-no').addEventListener('click', ()=>{
+                        expectingAction = false;
                         appendUserMessage('no');
                         appendAssistantMessage("I'll keep improving!");
                         scrollChatToBottom();
                     });
 
                     box.querySelector('.btn-more').addEventListener('click', async ()=>{
+                        expectingAction = false;
                         appendUserMessage('more');
                         try{
                             const resp = await fetch('/api/chat/more', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({session_id: currentSessionId})});
@@ -352,6 +779,7 @@
                     });
 
                     box.querySelector('.btn-exit').addEventListener('click', ()=>{
+                        expectingAction = false;
                         appendUserMessage('exit');
                         appendAssistantMessage('Goodbye 👋');
                         currentSessionId = null;
